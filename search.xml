@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Go语言学习第一课</title>
+    <url>/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h2 id="Go语言学习第一课（2023-10-14）">Go语言学习第一课（2023.10.14）</h2>
+<h3 id="1-Golang的学习方向">1.Golang的学习方向</h3>
+<ol>
+<li>
+<p>1 区块链研发工程师</p>
+</li>
+<li>
+<p>2 Go服务器端/游戏软件工程师</p>
+</li>
+<li>
+<p>3 Golang分布式/云计算软件工程师</p>
+</li>
+</ol>
+<p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C:%5CUsers%5Chp%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231014143243820.png" alt="image-20231014143243820"></p>
+<h3 id="2-Golang的应用领域">2.Golang的应用领域</h3>
+<p>区块链应用：分布式账本技术，特点是去中心化；</p>
+<p>后端服务器应用：美团后台流量支撑程序；</p>
+<p>云计算和云服务；</p>
+<h3 id="3-如何学习Go语言">3.如何学习Go语言</h3>
+<p>高效学习、在实践中学习，写代码不能停</p>
+<h3 id="4-Go语言特点">4.Go语言特点</h3>
+<p>简介：Go语言具有C语言和高级语言的两方面优点，既能够静态编译语言的安全和性能，又达到了动态语言开发维护的高效率。Go=C+Python。</p>
+<p>1）从C语言中继承了很多理念</p>
+<p>2）Go语言的每个文件都要归属于一个包</p>
+<p>3）垃圾回收机制，内存自动回收，不需要开发人员管理</p>
+<p>4）天然并发</p>
+<h3 id="5-Go语言的安装教程">5.Go语言的安装教程</h3>
+<h3 id></h3>
+<h3 id="-2"></h3>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/10/13/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>算法第一课学习</title>
+    <url>/2023/10/14/%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%AF%BE%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>算法导论</title>
+    <url>/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</url>
+    <content><![CDATA[<h2 id="一-算法分析">一. 算法分析</h2>
+<p>是关于计算机程序性和资源利用的分析，特别注重性能。</p>
+<h3 id="Class-1-课程简介及算法分析">Class 1 课程简介及算法分析</h3>
+<h4 id="1-排序问题">1. 排序问题</h4>
+<p>Input: Sequence<br>
+$$&lt;a_1,a_2,…a_n&gt;$$<br>
+Output: Permutation Sequence<br>
+$$&lt;a_1’,a_2’,…a_n’&gt;$$</p>
+<p>排列是对一组数字按照一定规则重新排序，例如：<br>
+$$a_1’&lt;a_2’&lt;…&lt;a_n’$$</p>
+<h5 id="1-1-插入排序（Insert-Sort）">1.1 插入排序（Insert Sort）</h5>
+<p><img src="https://img-blog.csdnimg.cn/20190410105013340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpbl94aW42NjY=,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190410105330442.gif" alt="在这里插入图片描述"></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//伪代码</span></span><br><span class="line">Insert <span class="title function_">Sort</span><span class="params">(A,n)</span></span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">1</span> to n</span><br><span class="line">        <span class="keyword">do</span> key = A[j]</span><br><span class="line">            i = j<span class="number">-1</span></span><br><span class="line">            <span class="keyword">while</span> i&gt;<span class="number">0</span> &amp;&amp; A[i]&gt;key</span><br><span class="line">                <span class="keyword">do</span> A[i+<span class="number">1</span>]=A[i]</span><br><span class="line">                    i=i<span class="number">-1</span></span><br><span class="line">            A[i+<span class="number">1</span>]=key</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//示例代码</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">insert_sort</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(s)): <span class="comment">#开始时片段[0:1]已排序</span></span><br><span class="line">        x=s[i]</span><br><span class="line">        j=i</span><br><span class="line">        <span class="keyword">while</span> j&gt;<span class="number">0</span> <span class="keyword">and</span> s[j-<span class="number">1</span>]&gt;x:</span><br><span class="line">            s[j]=s[j-<span class="number">1</span>] <span class="comment">#反序逐个后移元素，确定插入位置</span></span><br><span class="line">            j-=<span class="number">1</span></span><br><span class="line">        s[j]=x</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">s=[<span class="number">2</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">insert_sort(s)</span><br></pre></td></tr></table></figure>
+<h6 id="Running-Time">Running Time</h6>
+<p>1）依赖于输入（例如一种极端的情况就是输入已经排序完成的序列）</p>
+<p>2）依赖于输入大小</p>
+<p>​        我们将依赖输入的规模将其参数化；</p>
+<p>3）运行时间上限</p>
+<p>可从以下几方面的分析展开：</p>
+<p><strong>1）Worst Case：</strong></p>
+<p>​         T(n)定义为输入规模为n时的最长运行时间；我们关注所有输入情况时的运行时间的最差情况。</p>
+<ul>
+<li>
+<p>相对速度（同一机器）</p>
+</li>
+<li>
+<p>绝对速度（不同机器）</p>
+</li>
+</ul>
+<p><strong>2） Average Case:</strong></p>
+<p>​        T(n)这时定义为输入规模n下所有可能输入的期望时间；</p>
+<p>​       接下来我们具体分析插入排序的时间性能，而渐进符号的概念会在下面做详细的介绍：</p>
+<ul>
+<li>Worst Case:<br>
+$$<br>
+T(n)=\sum_{j=2}^{n} \theta (j)=\theta (n^2)<br>
+$$</li>
+</ul>
+<h5 id="1-2-归并排序（Merge-Sort）">1.2 归并排序（Merge Sort）</h5>
+<p>​        归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。归并排序思路简单，速度仅次于快速排序，为稳定排序算法，一般用于对总体无序，但是各子项相对有序的数列。</p>
+<p><img src="https://pic4.zhimg.com/v2-2958d4f3d9dd9156f1b5dca6788fe8a7_r.jpg" alt="img"></p>
+<p><img src="https://pic4.zhimg.com/v2-a29c0dd0186d1f8cef3c5ebdedf3e5a3_b.webp" alt="动图"></p>
+<p>在每一步中，只关心两个元素。</p>
+<h6 id="Running-Time-2">Running Time</h6>
+<p>递归每一层的比较时间是线性的<br>
+$$<br>
+Time=\theta(n)<br>
+$$<br>
+线性时间<br>
+$$<br>
+T(n)=\left{\begin{matrix}<br>
+\theta (1),&amp; n=1\<br>
+2T(\frac{n}{2}  )+\theta(n),&amp;n&gt;1<br>
+\end{matrix}\right.<br>
+$$</p>
+<p>通常我们省略常数情况，利用递归树可以得出<br>
+$$<br>
+T(n)=\theta (nlgn)<br>
+$$<br>
+<strong>我们可以得出，在渐进的情况下，归并排序的速度是优于插入排序算法的。</strong></p>
+<h4 id="2-简单理解渐进符号（Asymptatic-notation）">2. 简单理解渐进符号（Asymptatic notation）</h4>
+<p>$$<br>
+\theta<br>
+$$</p>
+<p>写个公式，弃去低阶项，忽略前面的常数因子。</p>
+<p>例如：<br>
+$$<br>
+3n^3+90n^2-5n+3298=\theta(n^3)<br>
+$$<br>
+渐进符号厉害之处在于使用一个统一的度量标准来平衡相对速度和绝对速度两方面的考量。</p>
+<p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/C:%5CUsers%5Chp%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231014164552980.png" alt="image-20231014164552980"></p>
+]]></content>
+  </entry>
+</search>
