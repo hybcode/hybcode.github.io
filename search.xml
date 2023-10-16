@@ -1,35 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2023/10/13/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>java learning</title>
+    <url>/2023/10/16/java-learning/</url>
+    <content><![CDATA[<h2 id="Java学习重点笔记整理（简略版）"><a href="#Java学习重点笔记整理（简略版）" class="headerlink" title="Java学习重点笔记整理（简略版）"></a>Java学习重点笔记整理（简略版）</h2><h3 id="一-数据类型"><a href="#一-数据类型" class="headerlink" title="一. 数据类型"></a>一. 数据类型</h3><h4 id="1-Java的基本数据类型转换"><a href="#1-Java的基本数据类型转换" class="headerlink" title="1.Java的基本数据类型转换"></a>1.Java的基本数据类型转换</h4><p><img src="/2023/10/16/java-learning/image-20231016171924509.png" alt="image-20231016171924509"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">typeTrans</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//auto type trans</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&#x27;c&#x27;</span>;</span><br><span class="line">		<span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">80</span>;</span><br><span class="line">		System.out.println(a);</span><br><span class="line">		System.out.println(d);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/10/16/java-learning/image-20231016172342786.png" alt="image-20231016172342786"></p>
+<h5 id="1-1-使用细节"><a href="#1-1-使用细节" class="headerlink" title="1.1 使用细节"></a>1.1 使用细节</h5><p>1）有多种类型的数据混合运算时，系统首先自动将所有数据转换为容量最大的那种数据类型，然后运算；</p>
+<p>2）容量大-&gt;容量小时，就会报错，否则会进行自动类型转换</p>
+<p>3）(byte,short)和char之间不会相互自动转化</p>
+<p>4）byte、short、char他们之间可以运算，运算前会转为int类型</p>
+<p>5）boolean不参与转换</p>
+<p>6）自动提升：表达式结构自动提升为操作数中最大的类型</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AutoConvertDetail</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//auto type trans</span></span><br><span class="line">		<span class="comment">//1. 有多种类型的数据混合运算时，系统首先自动将所有数据转换为容量最大的那种数据类型，然后运算</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">n1</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="comment">//float d1 = n1 + 1.1;  //1.1-&gt;double</span></span><br><span class="line">		<span class="type">double</span> <span class="variable">d1</span> <span class="operator">=</span> n1 + <span class="number">1.1</span>;</span><br><span class="line">		<span class="type">float</span> <span class="variable">d2</span> <span class="operator">=</span> n1 +<span class="number">1.1F</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//2. 容量大-&gt;容量小时，就会报错，否则会进行自动类型转换</span></span><br><span class="line">		<span class="comment">//int n2 = 1.1; //错误  double-&gt;int</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//3. (byte,short)和char之间不会相互自动转化</span></span><br><span class="line">		<span class="type">byte</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="number">10</span>;  <span class="comment">//-128-127</span></span><br><span class="line">		<span class="comment">//char c1 = b1;  //错误，byte不能自动转为char</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//4.byte、short、char他们之间可以运算，运算前会转为int类型</span></span><br><span class="line">		<span class="type">byte</span> <span class="variable">b2</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="type">short</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="type">byte</span> <span class="variable">b3</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="comment">//short s2 = b2 + s1;  //错误，int-&gt;short</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">s2</span> <span class="operator">=</span> b2 + s1;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//byte b4 = b2 + b3;   //错误</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="1-2-基本数据类型的强制转换"><a href="#1-2-基本数据类型的强制转换" class="headerlink" title="1.2 基本数据类型的强制转换"></a>1.2 基本数据类型的强制转换</h5><p>自动类型转换的逆过程，使用时要加上强制类型转换符，可能会造成精度的降低或溢出。</p>
+<p>案例演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForceConvert</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> (<span class="type">int</span>)<span class="number">1.9</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;n1=&quot;</span> + i);  <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//int x = (int)10 * 3.5 + 6 *1.5;</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> (<span class="type">int</span>)(<span class="number">10</span> * <span class="number">3.5</span> + <span class="number">6</span> *<span class="number">1.5</span>);</span><br><span class="line">		System.out.println(y);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="1-3-基本数据类型和string类型的转换"><a href="#1-3-基本数据类型和string类型的转换" class="headerlink" title="1.3 基本数据类型和string类型的转换"></a>1.3 基本数据类型和string类型的转换</h5><p><img src="/2023/10/16/java-learning/image-20231016180402241.png" alt="image-20231016180402241"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringToBasic</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//基本数据类型转string</span></span><br><span class="line"></span><br><span class="line">		<span class="type">int</span> <span class="variable">n1</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">		<span class="type">float</span> <span class="variable">f1</span> <span class="operator">=</span> <span class="number">1.1F</span>;</span><br><span class="line">		<span class="type">double</span> <span class="variable">d1</span> <span class="operator">=</span><span class="number">4.5</span>;</span><br><span class="line">		<span class="type">boolean</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> n1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> f1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> d1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> b1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		System.out.println(s1 + <span class="string">&quot; &quot;</span> + s2 + <span class="string">&quot; &quot;</span> + s3 + <span class="string">&quot; &quot;</span> + s4);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//string转基本数据类型</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="string">&quot;123&quot;</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">num1</span> <span class="operator">=</span> Integer.parseInt(s5);</span><br><span class="line">		<span class="type">double</span> <span class="variable">num2</span> <span class="operator">=</span> Double.parseDouble(s5);</span><br><span class="line">		System.out.println(num1);</span><br><span class="line">		System.out.println(num2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>String转为Char的含义是把字符串的第一个字符取出来</p>
+<h3 id="二、逻辑运算符"><a href="#二、逻辑运算符" class="headerlink" title="二、逻辑运算符"></a>二、逻辑运算符</h3><p><img src="/2023/10/16/java-learning/image-20231016201103325.png" alt="image-20231016201103325"></p>
+<h3 id="三、键盘输入语句"><a href="#三、键盘输入语句" class="headerlink" title="三、键盘输入语句"></a>三、键盘输入语句</h3><p><img src="/2023/10/16/java-learning/image-20231016202121685.png" alt="image-20231016202121685"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">input</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//1.引入Scanner类所在包</span></span><br><span class="line">		<span class="comment">//2.创建对象</span></span><br><span class="line">		<span class="type">Scanner</span> <span class="variable">myscanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入名字&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> myscanner.next();</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入年龄&quot;</span>);</span><br><span class="line">		<span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> myscanner.nextInt();</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入薪水&quot;</span>);</span><br><span class="line">		<span class="type">double</span> <span class="variable">sal</span> <span class="operator">=</span> myscanner.nextDouble();</span><br><span class="line">		System.out.println(<span class="string">&quot;人的信息如下：&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;name=&quot;</span>+name+<span class="string">&quot;age=&quot;</span>+age+<span class="string">&quot;sal=&quot;</span>+sal);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="四、switch分支结构"><a href="#四、switch分支结构" class="headerlink" title="四、switch分支结构"></a>四、switch分支结构</h3><p><img src="/2023/10/16/java-learning/image-20231016203541595.png" alt="image-20231016203541595"></p>
+<p><img src="/2023/10/16/java-learning/image-20231016204633574.png" alt="image-20231016204633574"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Go语言学习第一课</title>
     <url>/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h2 id="Go语言学习第一课（2023-10-14）">Go语言学习第一课（2023.10.14）</h2>
-<h3 id="1-Golang的学习方向">1.Golang的学习方向</h3>
-<ol>
-<li>
-<p>1 区块链研发工程师</p>
+    <content><![CDATA[<h2 id="Go语言学习第一课（2023-10-14）"><a href="#Go语言学习第一课（2023-10-14）" class="headerlink" title="Go语言学习第一课（2023.10.14）"></a>Go语言学习第一课（2023.10.14）</h2><h3 id="1-Golang的学习方向"><a href="#1-Golang的学习方向" class="headerlink" title="1.Golang的学习方向"></a>1.Golang的学习方向</h3><ol>
+<li><p>1 区块链研发工程师</p>
 </li>
-<li>
-<p>2 Go服务器端/游戏软件工程师</p>
+<li><p>2 Go服务器端/游戏软件工程师</p>
 </li>
-<li>
-<p>3 Golang分布式/云计算软件工程师</p>
+<li><p>3 Golang分布式/云计算软件工程师</p>
 </li>
 </ol>
-<h3 id="2-Golang的应用领域">2.Golang的应用领域</h3>
-<p>区块链应用：分布式账本技术，特点是去中心化；</p>
+<h3 id="2-Golang的应用领域"><a href="#2-Golang的应用领域" class="headerlink" title="2.Golang的应用领域"></a>2.Golang的应用领域</h3><p>区块链应用：分布式账本技术，特点是去中心化；</p>
 <p>后端服务器应用：美团后台流量支撑程序；</p>
 <p>云计算和云服务；</p>
-<h3 id="3-如何学习Go语言">3.如何学习Go语言</h3>
-<p>高效学习、在实践中学习，写代码不能停</p>
-<h3 id="4-Go语言特点">4.Go语言特点</h3>
-<p>简介：Go语言具有C语言和高级语言的两方面优点，既能够静态编译语言的安全和性能，又达到了动态语言开发维护的高效率。Go=C+Python。</p>
+<h3 id="3-如何学习Go语言"><a href="#3-如何学习Go语言" class="headerlink" title="3.如何学习Go语言"></a>3.如何学习Go语言</h3><p>高效学习、在实践中学习，写代码不能停</p>
+<h3 id="4-Go语言特点"><a href="#4-Go语言特点" class="headerlink" title="4.Go语言特点"></a>4.Go语言特点</h3><p>简介：Go语言具有C语言和高级语言的两方面优点，既能够静态编译语言的安全和性能，又达到了动态语言开发维护的高效率。Go=C+Python。</p>
 <p>1）从C语言中继承了很多理念</p>
 <p>2）Go语言的每个文件都要归属于一个包</p>
 <p>3）垃圾回收机制，内存自动回收，不需要开发人员管理</p>
 <p>4）天然并发</p>
-<h3 id="5-Go语言的安装教程">5.Go语言的安装教程</h3>
-<p><a href="https://golang.google.cn/dl/">All releases - The Go Programming Language (google.cn)</a></p>
+<h3 id="5-Go语言的安装教程"><a href="#5-Go语言的安装教程" class="headerlink" title="5.Go语言的安装教程"></a>5.Go语言的安装教程</h3><p><a href="https://golang.google.cn/dl/">All releases - The Go Programming Language (google.cn)</a></p>
 <p>1）首先打开上面的Go语言官网，根据自己的操作系统选择合适的安装包。</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015112427530.png" alt="image-20231015112427530"></p>
 <p>2）直接安装，新版本无需配置环境变量</p>
@@ -39,71 +70,52 @@
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015131240915.png" alt="image-20231015131240915"></p>
 <p>注意，如果package下面有红色波浪线，go.mod未初始化，可以在终端输入如下命令</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015131335711.png" alt="image-20231015131335711"></p>
-<h2 id="Go语言学习第二课（2023-10-15）">Go语言学习第二课（2023.10.15）</h2>
-<h3 id="1-Go语言快速开发入门">1.Go语言快速开发入门</h3>
-<h4 id="1-1-需求">1.1 需求</h4>
-<p>要求开发一个hello.go程序，可以输出hello world</p>
-<h4 id="1-2-开发的步骤">1.2 开发的步骤</h4>
-<ul>
-<li>
-<p>开发项目时，Go比较好的一种建目录结构的方式</p>
+<h2 id="Go语言学习第二课（2023-10-15）"><a href="#Go语言学习第二课（2023-10-15）" class="headerlink" title="Go语言学习第二课（2023.10.15）"></a>Go语言学习第二课（2023.10.15）</h2><h3 id="1-Go语言快速开发入门"><a href="#1-Go语言快速开发入门" class="headerlink" title="1.Go语言快速开发入门"></a>1.Go语言快速开发入门</h3><h4 id="1-1-需求"><a href="#1-1-需求" class="headerlink" title="1.1 需求"></a>1.1 需求</h4><p>要求开发一个hello.go程序，可以输出hello world</p>
+<h4 id="1-2-开发的步骤"><a href="#1-2-开发的步骤" class="headerlink" title="1.2 开发的步骤"></a>1.2 开发的步骤</h4><ul>
+<li><p>开发项目时，Go比较好的一种建目录结构的方式</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015132514784.png" alt="image-20231015132514784"></p>
 </li>
 </ul>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015132939529.png" alt="image-20231015132939529"></p>
 <ul>
-<li>
-<p>对上图代码的说明:</p>
+<li><p>对上图代码的说明:</p>
 <ul>
-<li>
-<p>Go程序的后缀是.go</p>
+<li><p>Go程序的后缀是.go</p>
 </li>
-<li>
-<p>package main表示该文件所在包是main，在go中每个文件都必须归属于一个包</p>
+<li><p>package main表示该文件所在包是main，在go中每个文件都必须归属于一个包</p>
 </li>
-<li>
-<p>import &quot;fmt&quot;引入一个包名为fmt的包，可以使用该包内的函数</p>
+<li><p>import “fmt”引入一个包名为fmt的包，可以使用该包内的函数</p>
 </li>
-<li>
-<p>func main(){</p>
+<li><p>func main(){</p>
 </li>
 </ul>
 <p>​        }</p>
 <p>​        func是关键字，类似主函数。是我们程序的入口。</p>
 <p>​        fmt.Println()表示调用函数</p>
 </li>
-<li>
-<p>通过go build命令对该go文件进行编译，生成.exe文件。可以指定文件名。</p>
-</li>
+</ul>
+<ul>
+<li>通过go build命令对该go文件进行编译，生成.exe文件。可以指定文件名。</li>
 </ul>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015141351267.png" alt="image-20231015141351267"></p>
-<h3 id="2-Go语言执行流程分析">2.Go语言执行流程分析</h3>
-<ul>
+<h3 id="2-Go语言执行流程分析"><a href="#2-Go语言执行流程分析" class="headerlink" title="2.Go语言执行流程分析"></a>2.Go语言执行流程分析</h3><ul>
 <li>如果是对源码编译后在执行，执行流程如下图：</li>
 </ul>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015141804451.png" alt="image-20231015141804451"></p>
 <ul>
-<li>
-<p>如果是对源码直接执行go run指令，执行流程如下：</p>
+<li><p>如果是对源码直接执行go run指令，执行流程如下：</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015141930852.png" alt="image-20231015141930852"></p>
 </li>
-<li>
-<p>两种执行方式的区别：</p>
+<li><p>两种执行方式的区别：</p>
 <p>1）如果生成exe文件，可以拷贝到没有go开发环境的机器上运行；</p>
 </li>
 </ul>
 <p>​       2）如果我们直接go run go源代码，那么如果在另一台机器上运行，也需要go的开发环境；</p>
 <p>​       3）在编译时将程序依赖的库文件包含在可执行文件中，可执行文件 大了很多；</p>
-<h3 id="正式开始学习之旅（2023-10-15）">正式开始学习之旅（2023.10.15）</h3>
-<h4 id="2-1-变量">2.1. 变量</h4>
-<h5 id="2-1-1-概念">2.1.1 概念</h5>
-<p>变量相当于内存中的一个数据存储空间，通过变量名可以访问到变量（值）</p>
-<h5 id="2-1-2-使用步骤">2.1.2 使用步骤</h5>
-<p>声明 赋值 使用</p>
-<h5 id="2-1-3-案例">2.1.3  案例</h5>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	i = <span class="number">10</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;i=&quot;</span>,i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="2-1-4-使用注意事项">2.1.4 使用注意事项</h5>
-<p>1）变量表示内存中的一个存储区域</p>
+<h3 id="正式开始学习之旅（2023-10-15）"><a href="#正式开始学习之旅（2023-10-15）" class="headerlink" title="正式开始学习之旅（2023.10.15）"></a>正式开始学习之旅（2023.10.15）</h3><h4 id="2-1-变量"><a href="#2-1-变量" class="headerlink" title="2.1. 变量"></a>2.1. 变量</h4><h5 id="2-1-1-概念"><a href="#2-1-1-概念" class="headerlink" title="2.1.1 概念"></a>2.1.1 概念</h5><p>变量相当于内存中的一个数据存储空间，通过变量名可以访问到变量（值）</p>
+<h5 id="2-1-2-使用步骤"><a href="#2-1-2-使用步骤" class="headerlink" title="2.1.2 使用步骤"></a>2.1.2 使用步骤</h5><p>声明 赋值 使用</p>
+<h5 id="2-1-3-案例"><a href="#2-1-3-案例" class="headerlink" title="2.1.3  案例"></a>2.1.3  案例</h5><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	i = <span class="number">10</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;i=&quot;</span>,i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-1-4-使用注意事项"><a href="#2-1-4-使用注意事项" class="headerlink" title="2.1.4 使用注意事项"></a>2.1.4 使用注意事项</h5><p>1）变量表示内存中的一个存储区域</p>
 <p>2）该区域有自己的名称和类型</p>
 <p>3）Golang使用变量的三种方式</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//第一种：指定变量类型，声明后若不赋值，使用默认值</span></span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;i =&quot;</span>,i)</span><br><span class="line">	<span class="comment">//第二种：根据所给值判定变量类型</span></span><br><span class="line">	<span class="keyword">var</span> num = <span class="number">10.11</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;num =&quot;</span>,num)</span><br><span class="line">	<span class="comment">//第三种：省略var，注意:=左侧的变量不能是已经声明过的，否则错误</span></span><br><span class="line">	<span class="comment">//等价于 var name string    name=&quot;Tom&quot;</span></span><br><span class="line">	name := <span class="string">&quot;tom&quot;</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;name =&quot;</span>,name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -112,16 +124,12 @@
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//golang如何一次性声明多变量</span></span><br><span class="line">	<span class="comment">//var n1,n2,n3 int </span></span><br><span class="line">	<span class="comment">//fmt.Println(&quot;n1=&quot;,n1,&quot;n2=&quot;,n2,&quot;n3=&quot;,n3)</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//一次性声明多个不同类型的变量</span></span><br><span class="line">	<span class="comment">// var n1, name, n3 = 100, &quot;tom&quot;, 888</span></span><br><span class="line">	<span class="comment">// fmt.Println(&quot;n1=&quot;, n1, &quot;name=&quot;, name, &quot;n3=&quot;, n3)</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//使用类型推导</span></span><br><span class="line">	n1, name, n3 := <span class="number">100</span>, <span class="string">&quot;tom&quot;</span>, <span class="number">888</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;n1=&quot;</span>, n1, <span class="string">&quot;name=&quot;</span>, name, <span class="string">&quot;n3=&quot;</span>, n3)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>5）该区域的数据值可以在同一类型的范围内变化</p>
 <p>6）变量在同一作用域内不能重名</p>
-<h5 id="2-1-5-变量的声明，初始化和赋值">2.1.5 变量的声明，初始化和赋值</h5>
-<p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172214055.png" alt="image-20231015172214055"></p>
-<h5 id="2-1-6-程序中-号的使用">2.1.6 程序中+号的使用</h5>
-<p>1）+两边都是数值型，做加法运算</p>
+<h5 id="2-1-5-变量的声明，初始化和赋值"><a href="#2-1-5-变量的声明，初始化和赋值" class="headerlink" title="2.1.5 变量的声明，初始化和赋值"></a>2.1.5 变量的声明，初始化和赋值</h5><p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172214055.png" alt="image-20231015172214055"></p>
+<h5 id="2-1-6-程序中-号的使用"><a href="#2-1-6-程序中-号的使用" class="headerlink" title="2.1.6 程序中+号的使用"></a>2.1.6 程序中+号的使用</h5><p>1）+两边都是数值型，做加法运算</p>
 <p>2）+两边都是字符串，做字符串拼接</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i = <span class="number">1</span></span><br><span class="line">	<span class="keyword">var</span> j = <span class="number">2</span></span><br><span class="line">	<span class="keyword">var</span> r = i + j</span><br><span class="line">	fmt.Println(<span class="string">&quot;r=&quot;</span>, r) <span class="comment">//r=3</span></span><br><span class="line">	<span class="keyword">var</span> str1 = <span class="string">&quot;hello&quot;</span></span><br><span class="line">	<span class="keyword">var</span> str2 = <span class="string">&quot;world&quot;</span></span><br><span class="line">	<span class="keyword">var</span> res = str1 + str2</span><br><span class="line">	fmt.Println(<span class="string">&quot;res=&quot;</span>, res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="2-1-7-变量的数据类型">2.1.7 变量的数据类型</h5>
-<p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172944441.png" alt="image-20231015172944441"></p>
-<h5 id="2-1-8-整数类型">2.1.8 整数类型</h5>
-<h6 id="2-1-8-1-基本介绍">2.1.8.1 基本介绍</h6>
+<h5 id="2-1-7-变量的数据类型"><a href="#2-1-7-变量的数据类型" class="headerlink" title="2.1.7 变量的数据类型"></a>2.1.7 变量的数据类型</h5><p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172944441.png" alt="image-20231015172944441"></p>
+<h5 id="2-1-8-整数类型"><a href="#2-1-8-整数类型" class="headerlink" title="2.1.8 整数类型"></a>2.1.8 整数类型</h5><h6 id="2-1-8-1-基本介绍"><a href="#2-1-8-1-基本介绍" class="headerlink" title="2.1.8.1 基本介绍"></a>2.1.8.1 基本介绍</h6><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -153,8 +161,8 @@
 </tr>
 </tbody>
 </table>
-<h6 id="2-1-8-2-整数的使用细节">2.1.8.2 整数的使用细节</h6>
-<p>1）有符号和无符号的区分；</p>
+</div>
+<h6 id="2-1-8-2-整数的使用细节"><a href="#2-1-8-2-整数的使用细节" class="headerlink" title="2.1.8.2 整数的使用细节"></a>2.1.8.2 整数的使用细节</h6><p>1）有符号和无符号的区分；</p>
 <p>2）整数默认声明为int；</p>
 <p>3）Go语言在使用时遵守保小不保大的原则，尽量选择占用空间小的类型；</p>
 ]]></content>
@@ -167,23 +175,15 @@
   <entry>
     <title>算法导论</title>
     <url>/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</url>
-    <content><![CDATA[<h2 id="一-算法分析">一. 算法分析</h2>
-<p>是关于计算机程序性和资源利用的分析，特别注重性能。</p>
-<h3 id="Class-1-课程简介及算法分析">Class 1 课程简介及算法分析</h3>
-<h4 id="1-排序问题">1. 排序问题</h4>
-<p>Input: Sequence<br>
-$$&lt;a_1,a_2,…a_n&gt;$$<br>
-Output: Permutation Sequence<br>
-$$&lt;a_1’,a_2’,…a_n’&gt;$$</p>
-<p>排列是对一组数字按照一定规则重新排序，例如：<br>
-$$a_1’&lt;a_2’&lt;…&lt;a_n’$$</p>
-<h5 id="1-1-插入排序（Insert-Sort）">1.1 插入排序（Insert Sort）</h5>
-<p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/20200707235339515.png" alt="20200707235339515"></p>
+    <content><![CDATA[<h2 id="一-算法分析"><a href="#一-算法分析" class="headerlink" title="一. 算法分析"></a>一. 算法分析</h2><p>是关于计算机程序性和资源利用的分析，特别注重性能。</p>
+<h3 id="Class-1-课程简介及算法分析"><a href="#Class-1-课程简介及算法分析" class="headerlink" title="Class 1 课程简介及算法分析"></a>Class 1 课程简介及算法分析</h3><h4 id="1-排序问题"><a href="#1-排序问题" class="headerlink" title="1. 排序问题"></a>1. 排序问题</h4><p>Input: Sequence</p>
+<script type="math/tex; mode=display"><a_1,a_2,...a_n></script><p>Output: Permutation Sequence</p>
+<script type="math/tex; mode=display"><a_1',a_2',...a_n'></script><p>排列是对一组数字按照一定规则重新排序，例如：</p>
+<script type="math/tex; mode=display">a_1'<a_2'<...<a_n'</script><h5 id="1-1-插入排序（Insert-Sort）"><a href="#1-1-插入排序（Insert-Sort）" class="headerlink" title="1.1 插入排序（Insert Sort）"></a>1.1 插入排序（Insert Sort）</h5><p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/20200707235339515.png" alt="20200707235339515"></p>
 <p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/20190410105330442.gif" alt="20190410105330442"></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//伪代码</span></span><br><span class="line">Insert <span class="title function_">Sort</span><span class="params">(A,n)</span></span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">1</span> to n</span><br><span class="line">        <span class="keyword">do</span> key = A[j]</span><br><span class="line">            i = j<span class="number">-1</span></span><br><span class="line">            <span class="keyword">while</span> i&gt;<span class="number">0</span> &amp;&amp; A[i]&gt;key</span><br><span class="line">                <span class="keyword">do</span> A[i+<span class="number">1</span>]=A[i]</span><br><span class="line">                    i=i<span class="number">-1</span></span><br><span class="line">            A[i+<span class="number">1</span>]=key</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">//示例代码</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">insert_sort</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(s)): <span class="comment">#开始时片段[0:1]已排序</span></span><br><span class="line">        x=s[i]</span><br><span class="line">        j=i</span><br><span class="line">        <span class="keyword">while</span> j&gt;<span class="number">0</span> <span class="keyword">and</span> s[j-<span class="number">1</span>]&gt;x:</span><br><span class="line">            s[j]=s[j-<span class="number">1</span>] <span class="comment">#反序逐个后移元素，确定插入位置</span></span><br><span class="line">            j-=<span class="number">1</span></span><br><span class="line">        s[j]=x</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">s=[<span class="number">2</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">insert_sort(s)</span><br></pre></td></tr></table></figure>
-<h6 id="Running-Time">Running Time</h6>
-<p>1）依赖于输入（例如一种极端的情况就是输入已经排序完成的序列）</p>
+<h6 id="Running-Time"><a href="#Running-Time" class="headerlink" title="Running Time"></a>Running Time</h6><p>1）依赖于输入（例如一种极端的情况就是输入已经排序完成的序列）</p>
 <p>2）依赖于输入大小</p>
 <p>​        我们将依赖输入的规模将其参数化；</p>
 <p>3）运行时间上限</p>
@@ -191,115 +191,54 @@ $$a_1’&lt;a_2’&lt;…&lt;a_n’$$</p>
 <p><strong>1）Worst Case：</strong></p>
 <p>​         T(n)定义为输入规模为n时的最长运行时间；我们关注所有输入情况时的运行时间的最差情况。</p>
 <ul>
-<li>
-<p>相对速度（同一机器）</p>
+<li><p>相对速度（同一机器）</p>
 </li>
-<li>
-<p>绝对速度（不同机器）</p>
+<li><p>绝对速度（不同机器）</p>
 </li>
 </ul>
 <p><strong>2） Average Case:</strong></p>
 <p>​        T(n)这时定义为输入规模n下所有可能输入的期望时间；</p>
 <p>​       接下来我们具体分析插入排序的时间性能，而渐进符号的概念会在下面做详细的介绍：</p>
 <ul>
-<li>Worst Case:<br>
-$$<br>
-T(n)=\sum_{j=2}^{n} \theta (j)=\theta (n^2)<br>
-$$</li>
+<li>Worst Case:<script type="math/tex; mode=display">
+T(n)=\sum_{j=2}^{n} \theta (j)=\theta (n^2)</script></li>
 </ul>
-<h5 id="1-2-归并排序（Merge-Sort）">1.2 归并排序（Merge Sort）</h5>
-<p>​        归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。归并排序思路简单，速度仅次于快速排序，为稳定排序算法，一般用于对总体无序，但是各子项相对有序的数列。</p>
+<h5 id="1-2-归并排序（Merge-Sort）"><a href="#1-2-归并排序（Merge-Sort）" class="headerlink" title="1.2 归并排序（Merge Sort）"></a>1.2 归并排序（Merge Sort）</h5><p>​        归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。归并排序思路简单，速度仅次于快速排序，为稳定排序算法，一般用于对总体无序，但是各子项相对有序的数列。</p>
 <p><img src="https://pic4.zhimg.com/v2-2958d4f3d9dd9156f1b5dca6788fe8a7_r.jpg" alt="img"></p>
 <p><img src="https://pic4.zhimg.com/v2-a29c0dd0186d1f8cef3c5ebdedf3e5a3_b.webp" alt="动图"></p>
 <p>在每一步中，只关心两个元素。</p>
-<h6 id="Running-Time-2">Running Time</h6>
-<p>递归每一层的比较时间是线性的<br>
-$$<br>
-Time=\theta(n)<br>
-$$<br>
-线性时间<br>
-$$<br>
-T(n)=\left{\begin{matrix}<br>
-\theta (1),&amp; n=1\<br>
-2T(\frac{n}{2}  )+\theta(n),&amp;n&gt;1<br>
-\end{matrix}\right.<br>
-$$</p>
-<p>通常我们省略常数情况，利用递归树可以得出<br>
-$$<br>
-T(n)=\theta (nlgn)<br>
-$$<br>
-<strong>我们可以得出，在渐进的情况下，归并排序的速度是优于插入排序算法的。</strong></p>
-<h4 id="2-简单理解渐进符号（Asymptatic-notation）">2. 简单理解渐进符号（Asymptatic notation）</h4>
-<p>$$<br>
-\theta<br>
-$$</p>
-<p>写个公式，弃去低阶项，忽略前面的常数因子。</p>
-<p>例如：<br>
-$$<br>
-3n^3+90n^2-5n+3298=\theta(n^3)<br>
-$$<br>
-渐进符号厉害之处在于使用一个统一的度量标准来平衡相对速度和绝对速度两方面的考量。</p>
+<h6 id="Running-Time-1"><a href="#Running-Time-1" class="headerlink" title="Running Time"></a>Running Time</h6><p>递归每一层的比较时间是线性的</p>
+<script type="math/tex; mode=display">
+Time=\theta(n)</script><p>线性时间</p>
+<script type="math/tex; mode=display">
+T(n)=\left\{\begin{matrix}
+  \theta (1),& n=1\\
+  2T(\frac{n}{2}  )+\theta(n),&n>1
+\end{matrix}\right.</script><p>通常我们省略常数情况，利用递归树可以得出</p>
+<script type="math/tex; mode=display">
+T(n)=\theta (nlgn)</script><p><strong>我们可以得出，在渐进的情况下，归并排序的速度是优于插入排序算法的。</strong></p>
+<h4 id="2-简单理解渐进符号（Asymptatic-notation）"><a href="#2-简单理解渐进符号（Asymptatic-notation）" class="headerlink" title="2. 简单理解渐进符号（Asymptatic notation）"></a>2. 简单理解渐进符号（Asymptatic notation）</h4><script type="math/tex; mode=display">
+\theta</script><p>写个公式，弃去低阶项，忽略前面的常数因子。</p>
+<p>例如：</p>
+<script type="math/tex; mode=display">
+3n^3+90n^2-5n+3298=\theta(n^3)</script><p>渐进符号厉害之处在于使用一个统一的度量标准来平衡相对速度和绝对速度两方面的考量。</p>
 <p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/image-20231014164552980.png" alt="image-20231014164552980"></p>
-<h3 id="Class-2-渐进符号，递归及其解法">Class 2 渐进符号，递归及其解法</h3>
-<h4 id="1-渐进符号">1. 渐进符号</h4>
-<h4 id="1-1-定义">1.1 定义</h4>
-<h4 id="2-求解递归式">2. 求解递归式</h4>
-<h5 id="2-1-方法一：代换法">2.1 <strong>方法一：代换法</strong></h5>
-<p>1.猜测答案</p>
+<h3 id="Class-2-渐进符号，递归及其解法"><a href="#Class-2-渐进符号，递归及其解法" class="headerlink" title="Class 2 渐进符号，递归及其解法"></a>Class 2 渐进符号，递归及其解法</h3><h4 id="1-渐进符号"><a href="#1-渐进符号" class="headerlink" title="1. 渐进符号"></a>1. 渐进符号</h4><h4 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h4><h4 id="2-求解递归式"><a href="#2-求解递归式" class="headerlink" title="2. 求解递归式"></a>2. 求解递归式</h4><h5 id="2-1-方法一：代换法"><a href="#2-1-方法一：代换法" class="headerlink" title="2.1 方法一：代换法"></a>2.1 <strong>方法一：代换法</strong></h5><p>1.猜测答案</p>
 <p>2.按照归纳法求解常数</p>
 <p>3.验证答案</p>
-<p>例如：<br>
-$$<br>
-T(n)=4T(\frac{n}{2} )+n<br>
-$$</p>
-<p>$$<br>
-Guess: T=O(n^3)<br>
-$$</p>
-<p>$$<br>
-Assume:T(k)\le ck^3,k&lt;n<br>
-$$</p>
-<p>$$<br>
-T(n)=4T(\frac{n}{2} )+n<br>
-\le 4c(\frac{n}{2} )^3+n=\frac{1}{2} cn^3+n\le cn^3<br>
-$$</p>
-<p>$$<br>
-Try~to~prove~~T(n)=O(n^2)~<br>
-$$</p>
-<p>$$<br>
-Assume:T(k)\le ck^2,k&lt;n<br>
-$$</p>
-<p>$$<br>
-T(n)=4T(\frac{n}{2} )+n<br>
-\le 4c(\frac{n}{2} )^2+n=cn^2+n\ge cn^2<br>
-$$</p>
-<p>$$<br>
-Assume:T(k)\le c_1k^2-c_2k,k&lt;n<br>
-$$</p>
-<p>$$<br>
-T(n)=4T(\frac{n}{2} )+n<br>
-\le 4(c_1(\frac{n}{2} )^2-c_2(\frac{n}{2}))+n\=c_1n^2+(1-2c_2)n=c_1n^2-c_2n-(-1+c_2)n\\le c_1n^2-c_2k~~~if~c_2\ge1<br>
-$$</p>
-<h5 id="2-2-方法二：递归树法">2.2 方法二：递归树法</h5>
-<h5 id="2-3-方法三：主方法">2.3 方法三：主方法</h5>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2023/10/13/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+<p>例如：</p>
+<script type="math/tex; mode=display">
+T(n)=4T(\frac{n}{2} )+n</script><script type="math/tex; mode=display">
+Guess: T=O(n^3)</script><script type="math/tex; mode=display">
+Assume:T(k)\le ck^3,k<n</script><script type="math/tex; mode=display">
+T(n)=4T(\frac{n}{2} )+n
+\le 4c(\frac{n}{2} )^3+n=\frac{1}{2} cn^3+n\le cn^3</script><script type="math/tex; mode=display">
+Try~to~prove~~T(n)=O(n^2)~</script><script type="math/tex; mode=display">
+Assume:T(k)\le ck^2,k<n</script><script type="math/tex; mode=display">
+T(n)=4T(\frac{n}{2} )+n
+\le 4c(\frac{n}{2} )^2+n=cn^2+n\ge cn^2</script><script type="math/tex; mode=display">
+Assume:T(k)\le c_1k^2-c_2k,k<n</script><script type="math/tex; mode=display">
+T(n)=4T(\frac{n}{2} )+n
+\le 4(c_1(\frac{n}{2} )^2-c_2(\frac{n}{2}))+n\\=c_1n^2+(1-2c_2)n=c_1n^2-c_2n-(-1+c_2)n\\\le c_1n^2-c_2k~~~if~c_2\ge1</script><h5 id="2-2-方法二：递归树法"><a href="#2-2-方法二：递归树法" class="headerlink" title="2.2 方法二：递归树法"></a>2.2 方法二：递归树法</h5><h5 id="2-3-方法三：主方法"><a href="#2-3-方法三：主方法" class="headerlink" title="2.3 方法三：主方法"></a>2.3 方法三：主方法</h5>]]></content>
   </entry>
 </search>
