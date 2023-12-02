@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -170,6 +170,266 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/30/%E5%A0%86%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ziyi Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hyb's Blog">
+      <meta itemprop="description" content="内心丰盈者，独行也如众">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hyb's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/30/%E5%A0%86%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-11-30 19:20:31 / 修改时间：19:19:56" itemprop="dateCreated datePublished" datetime="2023-11-30T19:20:31+08:00">2023-11-30</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>堆的介绍和优先级队列</h1>
+<h2 id="1-堆的基本介绍">1. 堆的基本介绍</h2>
+<h3 id="1-1-定义">1.1 定义</h3>
+<p>堆必须是一个完全二叉树。</p>
+<p><img src="C:/Users/hp/AppData/Roaming/Typora/typora-user-images/image-20231130142442786.png" alt="image-20231130142442786"></p>
+<p>根据堆序性，可以把堆分为两类，分别为<strong>大顶堆</strong>和<strong>小顶堆</strong>。在大顶堆中，每个父节点元素要大于它的子节点元素。在小顶堆中，每个父节点元素都必须小于它的子节点元素。</p>
+<p>Ex.大顶堆</p>
+<p><img src="/2023/11/30/%E5%A0%86%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/Users/hp/Desktop/1.png" alt="1"></p>
+<p>小顶堆：</p>
+<p><img src="/2023/11/30/%E5%A0%86%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/Users/hp/Desktop/3.drawio.png" alt="3.drawio"></p>
+<h4 id="1-1-1-堆的存储：">1.1.1 堆的存储：</h4>
+<p>首先我们按照层序遍历的顺序来给节点编号，从上到下，从左到右把这些元素对应到数组的下标，然后把树的元素存入到相应的下标里。</p>
+<p><img src="C:/Users/hp/AppData/Roaming/Typora/typora-user-images/image-20231130144207111.png" alt="image-20231130144207111"></p>
+<p>若节点的下标为i，那么左子节点的下标为2i+1，右子节点的下标为2i+2。</p>
+<h3 id="1-2-基本操作">1.2 基本操作</h3>
+<p>运用以下两个操作基本能实现堆的所有功能。</p>
+<h4 id="1-2-1-下滤">1.2.1 下滤</h4>
+<p>我们把根节点向下调整的操作称为下滤。</p>
+<p>例如图中这棵树，可以看到只有他的根元素不满足堆序性。因此我们通过操作可以把他调整为堆。</p>
+<p><img src="C:/Users/hp/AppData/Roaming/Typora/typora-user-images/image-20231130144734168.png" alt="image-20231130144734168"></p>
+<p>我们将这个节点与他的最大子节点进行比较（因为是大根堆，如果是小根堆则相反），如果小于则与最大子节点进行交换，直到大于它的最大子节点或者移动的底部为止。</p>
+<p>下滤的时间复杂度为：<br>
+$$<br>
+O(nlgn)<br>
+$$</p>
+<h4 id="1-2-2-上滤">1.2.2 上滤</h4>
+<p>这个操作主要用于插入新元素到堆中</p>
+<p>例如图中这棵树，只有树的最后一个元素破坏了堆序性。</p>
+<p><img src="C:/Users/hp/AppData/Roaming/Typora/typora-user-images/image-20231130145311864.png" alt="image-20231130145311864"></p>
+<p>我们将这个节点与他的父节点进行比较，如果大于则与父节点进行交换，直到小于它的父节点或者移动的顶部为止。</p>
+<p>上滤的时间复杂度为：<br>
+$$<br>
+O(nlgn)<br>
+$$</p>
+<h4 id="1-2-3-建堆">1.2.3 建堆</h4>
+<p>如果有一个乱序的数组，要怎么操作才能把他转化为堆呢？</p>
+<h5 id="1-2-3-1-自顶而下">1.2.3.1 自顶而下</h5>
+<p>将新元素放到堆的最后一位，然后对其进行上滤操作。直到所有元素插入后，建堆完成。</p>
+<h5 id="1-2-3-2-自下而上">1.2.3.2 自下而上</h5>
+<p>对每个父节点进行下滤，复杂度是O(n)</p>
+<h2 id="2-堆的具体应用：优先级队列">2. 堆的具体应用：优先级队列</h2>
+<p>优先级队列有两个操作，一个是插入队列，另一个为弹出最小元素。这种队列可以用小根堆来实现。因为小根堆的根节点是最小元素，所以直接弹出根节点即可完成操作。</p>
+<p><img src="C:/Users/hp/AppData/Roaming/Typora/typora-user-images/image-20231130150405564.png" alt="image-20231130150405564"></p>
+<p>弹出后要继续调整成堆，调整方法也很简单，将最后一个元素放到根节点的位置，然后进行下滤操作。</p>
+<p><strong>堆排序</strong></p>
+<p>将优先队列的所有元素依次弹出。</p>
+<p>我们可以发现，用大根堆的堆排序结果是正序的，用小根堆是倒序的。</p>
+<h2 id="LeeCode-347-前K个高频元素">LeeCode 347: 前K个高频元素</h2>
+<p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你返回其中出现频率前 <code>k</code> 高的元素。你可以按 <strong>任意顺序</strong> 返回答案。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [1,1,1,2,2,3], k = 2</span><br><span class="line">输出: [1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [1], k = 1</span><br><span class="line">输出: [1]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>k</code> 的取值范围是 <code>[1, 数组中不相同的元素的个数]</code></li>
+<li>题目数据保证答案唯一，换句话说，数组中前 <code>k</code> 个高频元素的集合是唯一的</li>
+</ul>
+<p>**进阶：**你所设计算法的时间复杂度 <strong>必须</strong> 优于 <code>O(n log n)</code> ，其中 <code>n</code> 是数组大小。</p>
+<h3 id="1-思路分析">1. 思路分析</h3>
+<p>这道题可以用大顶堆做也可以用小顶堆做，具体在Java中表现为对优先级队列的构造器里的比较器进行设置。但是确实这道题在做的时候还是有些问题的，一是对于优先级队列不了解，里面的元素可以是数组元素，并且要返回的是map里的key而不是value，也就是说不是次数而是数本身。话不多说，直接上代码进行分析。</p>
+<h3 id="2-代码">2.代码</h3>
+<p>方法一：大顶堆实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;nums[<span class="number">0</span>]&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] res = <span class="keyword">new</span> <span class="title class_">int</span>[k];</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i : nums) &#123;</span><br><span class="line">            map.put(i, map.getOrDefault(i, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        PriorityQueue&lt;<span class="type">int</span>[]&gt; que = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(((pair1,pair2)-&gt;pair2[<span class="number">1</span>]-pair1[<span class="number">1</span>]));</span><br><span class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer,Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">            que.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;entry.getKey(),entry.getValue()&#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            res[i] = que.poll()[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要记忆的方法：</p>
+<p><code>HashMap</code>中的<code>map.entrySet()</code>是从来没有用过的方法。在这个地方需要重点注意一下啊。</p>
+<p>方法二：用小顶堆实现</p>
+<p>用小顶堆实现其实更符合这道题的要求，但是我一开始没有想到这个东西。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;nums[<span class="number">0</span>]&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] res = <span class="keyword">new</span> <span class="title class_">int</span>[k];</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i : nums) &#123;</span><br><span class="line">            map.put(i, map.getOrDefault(i, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        PriorityQueue&lt;<span class="type">int</span>[]&gt; que = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(k,((pair1,pair2)-&gt;pair1[<span class="number">1</span>]-pair2[<span class="number">1</span>]));</span><br><span class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer,Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(que.size() &lt; k) &#123;</span><br><span class="line">                que.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;entry.getKey(), entry.getValue()&#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(entry.getValue() &gt; que.peek()[<span class="number">1</span>]) &#123;</span><br><span class="line">                    que.poll();</span><br><span class="line">                    que.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;entry.getKey(), entry.getValue()&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> k - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            res[i] = que.poll()[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>事实上使用小顶堆后会发现算法的时间复杂度下降了很多，超越的人也更多了。以此做个记录，到时候反复复习。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/10/%E7%89%9B%E5%AE%A2%E7%BD%91java%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ziyi Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hyb's Blog">
+      <meta itemprop="description" content="内心丰盈者，独行也如众">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hyb's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/10/%E7%89%9B%E5%AE%A2%E7%BD%91java%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">牛客网java刷题笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-11-10 14:30:03 / 修改时间：23:08:39" itemprop="dateCreated datePublished" datetime="2023-11-10T14:30:03+08:00">2023-11-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="2023-11-10">2023.11.10</h2>
+<p>对牛客网上做错的Java基础题进行总结和巩固</p>
+<h3 id="1-选项中哪一行代码可以替换-add-code-here-而不产生编译错误">1.选项中哪一行代码可以替换 //add code here 而不产生编译错误</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">     <span class="keyword">public</span> <span class="type">int</span> <span class="variable">constInt</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">     <span class="comment">//add code here</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">()</span> &#123;</span><br><span class="line">     &#125; </span><br></pre></td></tr></table></figure>
+<p><img src="/2023/11/10/%E7%89%9B%E5%AE%A2%E7%BD%91java%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/image-20231110143428443.png" alt="image-20231110143428443"></p>
+<h4 id="刷题心得：">刷题心得：</h4>
+<p>抽象方法不能有方法体，抽象方法可以实现对普通方法的重载，返回值不能作为重载的依据。</p>
+<h3 id="2-假定Base-b-new-Derived（）-调用执行b-methodOne（）后，输出结果是什么？">2.假定Base b = new Derived（）; 调用执行b.methodOne（）后，输出结果是什么？</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Base</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">methodOne</span><span class="params">()</span></span><br><span class="line">   &#123;</span><br><span class="line">      System.out.print(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">      methodTwo();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">methodTwo</span><span class="params">()</span></span><br><span class="line">   &#123;</span><br><span class="line">      System.out.print(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Derived</span> <span class="keyword">extends</span> <span class="title class_">Base</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">methodOne</span><span class="params">()</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="built_in">super</span>.methodOne();</span><br><span class="line">      System.out.print(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">methodTwo</span><span class="params">()</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="built_in">super</span>.methodTwo();</span><br><span class="line">      System.out.print(<span class="string">&quot;D&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正确答案为ABDC</p>
+<h4 id="刷题心得：-2">刷题心得：</h4>
+<p><img src="/2023/11/10/%E7%89%9B%E5%AE%A2%E7%BD%91java%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/624288791_1595596652709_2ACE7E0DDC324F941D9408346EC00132.jpeg" alt="img"></p>
+<h3 id="3-映射-Map-的key和value都不可重复。">3.映射 (Map) 的key和value都不可重复。</h3>
+<p>错误</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/a5f7c8e4b1bb4ee3bfd1171653fdefef">https://www.nowcoder.com/questionTerminal/a5f7c8e4b1bb4ee3bfd1171653fdefef</a><br>
+来源：牛客网</p>
+<h4 id="刷题心得：-3">刷题心得：</h4>
+<p>Map接口有两个金典的子类分别是 Hashtable 和 Hashmap。</p>
+<p>Hashtable 线程安全，不支持key和value为空，key不能重复，但value可以重复，不支持key和value为null。</p>
+<p>Hashmap 非线程安全，支持key和value为空，key不能重复，但value可以重复，支持key和value为null。</p>
+<p>由于题目否定Map集合中的value都不可重复，这是错误的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -207,9 +467,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-10-16 17:17:57 / 修改时间：20:54:44" itemprop="dateCreated datePublished" datetime="2023-10-16T17:17:57+08:00">2023-10-16</time>
+      <time title="创建时间：2023-10-16 17:17:57" itemprop="dateCreated datePublished" datetime="2023-10-16T17:17:57+08:00">2023-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-30 12:08:24" itemprop="dateModified" datetime="2023-10-30T12:08:24+08:00">2023-10-30</time>
     </span>
 
   
@@ -219,14 +485,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
+      <span>3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -237,27 +503,45 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Java学习重点笔记整理（简略版）"><a href="#Java学习重点笔记整理（简略版）" class="headerlink" title="Java学习重点笔记整理（简略版）"></a>Java学习重点笔记整理（简略版）</h2><h3 id="一-数据类型"><a href="#一-数据类型" class="headerlink" title="一. 数据类型"></a>一. 数据类型</h3><h4 id="1-Java的基本数据类型转换"><a href="#1-Java的基本数据类型转换" class="headerlink" title="1.Java的基本数据类型转换"></a>1.Java的基本数据类型转换</h4><p><img src="/2023/10/16/java-learning/image-20231016171924509.png" alt="image-20231016171924509"></p>
+          <h2 id="Java学习重点笔记整理（简略版）">Java学习重点笔记整理（简略版）</h2>
+<h3 id="一-数据类型">一. 数据类型</h3>
+<h4 id="1-Java的基本数据类型转换">1.Java的基本数据类型转换</h4>
+<p><img src="/2023/10/16/java-learning/image-20231016171924509.png" alt="image-20231016171924509"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">typeTrans</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//auto type trans</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&#x27;c&#x27;</span>;</span><br><span class="line">		<span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">80</span>;</span><br><span class="line">		System.out.println(a);</span><br><span class="line">		System.out.println(d);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/2023/10/16/java-learning/image-20231016172342786.png" alt="image-20231016172342786"></p>
-<h5 id="1-1-使用细节"><a href="#1-1-使用细节" class="headerlink" title="1.1 使用细节"></a>1.1 使用细节</h5><p>1）有多种类型的数据混合运算时，系统首先自动将所有数据转换为容量最大的那种数据类型，然后运算；</p>
+<h5 id="1-1-使用细节">1.1 使用细节</h5>
+<p>1）有多种类型的数据混合运算时，系统首先自动将所有数据转换为容量最大的那种数据类型，然后运算；</p>
 <p>2）容量大-&gt;容量小时，就会报错，否则会进行自动类型转换</p>
 <p>3）(byte,short)和char之间不会相互自动转化</p>
 <p>4）byte、short、char他们之间可以运算，运算前会转为int类型</p>
 <p>5）boolean不参与转换</p>
 <p>6）自动提升：表达式结构自动提升为操作数中最大的类型</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AutoConvertDetail</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//auto type trans</span></span><br><span class="line">		<span class="comment">//1. 有多种类型的数据混合运算时，系统首先自动将所有数据转换为容量最大的那种数据类型，然后运算</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">n1</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="comment">//float d1 = n1 + 1.1;  //1.1-&gt;double</span></span><br><span class="line">		<span class="type">double</span> <span class="variable">d1</span> <span class="operator">=</span> n1 + <span class="number">1.1</span>;</span><br><span class="line">		<span class="type">float</span> <span class="variable">d2</span> <span class="operator">=</span> n1 +<span class="number">1.1F</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//2. 容量大-&gt;容量小时，就会报错，否则会进行自动类型转换</span></span><br><span class="line">		<span class="comment">//int n2 = 1.1; //错误  double-&gt;int</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//3. (byte,short)和char之间不会相互自动转化</span></span><br><span class="line">		<span class="type">byte</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="number">10</span>;  <span class="comment">//-128-127</span></span><br><span class="line">		<span class="comment">//char c1 = b1;  //错误，byte不能自动转为char</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//4.byte、short、char他们之间可以运算，运算前会转为int类型</span></span><br><span class="line">		<span class="type">byte</span> <span class="variable">b2</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="type">short</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="type">byte</span> <span class="variable">b3</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="comment">//short s2 = b2 + s1;  //错误，int-&gt;short</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">s2</span> <span class="operator">=</span> b2 + s1;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//byte b4 = b2 + b3;   //错误</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="1-2-基本数据类型的强制转换"><a href="#1-2-基本数据类型的强制转换" class="headerlink" title="1.2 基本数据类型的强制转换"></a>1.2 基本数据类型的强制转换</h5><p>自动类型转换的逆过程，使用时要加上强制类型转换符，可能会造成精度的降低或溢出。</p>
+<h5 id="1-2-基本数据类型的强制转换">1.2 基本数据类型的强制转换</h5>
+<p>自动类型转换的逆过程，使用时要加上强制类型转换符，可能会造成精度的降低或溢出。</p>
 <p>案例演示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForceConvert</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> (<span class="type">int</span>)<span class="number">1.9</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;n1=&quot;</span> + i);  <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//int x = (int)10 * 3.5 + 6 *1.5;</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> (<span class="type">int</span>)(<span class="number">10</span> * <span class="number">3.5</span> + <span class="number">6</span> *<span class="number">1.5</span>);</span><br><span class="line">		System.out.println(y);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="1-3-基本数据类型和string类型的转换"><a href="#1-3-基本数据类型和string类型的转换" class="headerlink" title="1.3 基本数据类型和string类型的转换"></a>1.3 基本数据类型和string类型的转换</h5><p><img src="/2023/10/16/java-learning/image-20231016180402241.png" alt="image-20231016180402241"></p>
+<h5 id="1-3-基本数据类型和string类型的转换">1.3 基本数据类型和string类型的转换</h5>
+<p><img src="/2023/10/16/java-learning/image-20231016180402241.png" alt="image-20231016180402241"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringToBasic</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//基本数据类型转string</span></span><br><span class="line"></span><br><span class="line">		<span class="type">int</span> <span class="variable">n1</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">		<span class="type">float</span> <span class="variable">f1</span> <span class="operator">=</span> <span class="number">1.1F</span>;</span><br><span class="line">		<span class="type">double</span> <span class="variable">d1</span> <span class="operator">=</span><span class="number">4.5</span>;</span><br><span class="line">		<span class="type">boolean</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> n1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> f1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> d1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> b1 + <span class="string">&quot;&quot;</span>;</span><br><span class="line">		System.out.println(s1 + <span class="string">&quot; &quot;</span> + s2 + <span class="string">&quot; &quot;</span> + s3 + <span class="string">&quot; &quot;</span> + s4);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//string转基本数据类型</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="string">&quot;123&quot;</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">num1</span> <span class="operator">=</span> Integer.parseInt(s5);</span><br><span class="line">		<span class="type">double</span> <span class="variable">num2</span> <span class="operator">=</span> Double.parseDouble(s5);</span><br><span class="line">		System.out.println(num1);</span><br><span class="line">		System.out.println(num2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>String转为Char的含义是把字符串的第一个字符取出来</p>
-<h3 id="二、逻辑运算符"><a href="#二、逻辑运算符" class="headerlink" title="二、逻辑运算符"></a>二、逻辑运算符</h3><p><img src="/2023/10/16/java-learning/image-20231016201103325.png" alt="image-20231016201103325"></p>
-<h3 id="三、键盘输入语句"><a href="#三、键盘输入语句" class="headerlink" title="三、键盘输入语句"></a>三、键盘输入语句</h3><p><img src="/2023/10/16/java-learning/image-20231016202121685.png" alt="image-20231016202121685"></p>
+<h3 id="二、逻辑运算符">二、逻辑运算符</h3>
+<p><img src="/2023/10/16/java-learning/image-20231016201103325.png" alt="image-20231016201103325"></p>
+<h3 id="三、键盘输入语句">三、键盘输入语句</h3>
+<p><img src="/2023/10/16/java-learning/image-20231016202121685.png" alt="image-20231016202121685"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">input</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//1.引入Scanner类所在包</span></span><br><span class="line">		<span class="comment">//2.创建对象</span></span><br><span class="line">		<span class="type">Scanner</span> <span class="variable">myscanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入名字&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> myscanner.next();</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入年龄&quot;</span>);</span><br><span class="line">		<span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> myscanner.nextInt();</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入薪水&quot;</span>);</span><br><span class="line">		<span class="type">double</span> <span class="variable">sal</span> <span class="operator">=</span> myscanner.nextDouble();</span><br><span class="line">		System.out.println(<span class="string">&quot;人的信息如下：&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;name=&quot;</span>+name+<span class="string">&quot;age=&quot;</span>+age+<span class="string">&quot;sal=&quot;</span>+sal);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="四、switch分支结构"><a href="#四、switch分支结构" class="headerlink" title="四、switch分支结构"></a>四、switch分支结构</h3><p><img src="/2023/10/16/java-learning/image-20231016203541595.png" alt="image-20231016203541595"></p>
+<h3 id="四、switch分支结构">四、switch分支结构</h3>
+<p><img src="/2023/10/16/java-learning/image-20231016203541595.png" alt="image-20231016203541595"></p>
 <p><img src="/2023/10/16/java-learning/image-20231016204633574.png" alt="image-20231016204633574"></p>
+<h3 id="五、Java的一些重难点易错点">五、Java的一些重难点易错点</h3>
+<h4 id="1-继承的练习题">1. 继承的练习题</h4>
+<p>在学习到这里的时候分析发现自己对于this的掌握非常差</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lzyedu.extends_.exercise;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExtendsExercise01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">B</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">B</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    A() &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    A(String name) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;a name&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    B() &#123;</span><br><span class="line">        <span class="built_in">this</span>(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;b&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    B(String name) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;b name&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>分析上面代码输出什么</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line">b name</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+<h4 id="2-关于Enum的toString-方法的一些说明">2. 关于Enum的toString()方法的一些说明</h4>
+<p>学习到这里时，整理一下</p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000040853529">java - Enum类中，toString中返回的name为什么是对象名字呢？ - SegmentFault 思否</a></p>
 
       
     </div>
@@ -315,6 +599,13 @@
 
       <time title="创建时间：2023-10-14 21:16:23" itemprop="dateCreated datePublished" datetime="2023-10-14T21:16:23+08:00">2023-10-14</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-15 20:54:34" itemprop="dateModified" datetime="2023-11-15T20:54:34+08:00">2023-11-15</time>
+    </span>
 
   
     <span class="post-meta-break"></span>
@@ -323,14 +614,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>3.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -341,7 +632,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p><img src="/2023/10/14/leecode%E7%AC%AC%E4%B8%80%E5%A4%A9%EF%BC%9A%E5%8F%8C%E6%8C%87%E9%92%88/image-20231114163604845.png" alt="image-20231114163604845"></p>
+<h2 id="Chapter-1-数组部分">Chapter 1 : 数组部分</h2>
+<h3 id="1-1-二分法使用的基本框架">1.1  二分法使用的基本框架</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class </span><br></pre></td></tr></table></figure>
+<h2 id="Chapter-2-二叉树部分">Chapter 2 : 二叉树部分</h2>
+<h3 id="Day-1：二叉树的三种深度优先遍历方式">Day 1：二叉树的三种深度优先遍历方式</h3>
+<h4 id="1-1-递归的理解">1.1  递归的理解</h4>
+<ul>
+<li>确定递归函数参数和返回值</li>
+<li>确定终止条件</li>
+<li>确定单层递归的逻辑</li>
+</ul>
+<h4 id="1-2-三种遍历方式">1.2 三种遍历方式</h4>
+<p><img src="/2023/10/14/leecode%E7%AC%AC%E4%B8%80%E5%A4%A9%EF%BC%9A%E5%8F%8C%E6%8C%87%E9%92%88/20200806191109896.png" alt="img"></p>
+<h4 id="1-3-递归法遍历树">1.3 递归法遍历树</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前序遍历·递归·LC144_二叉树的前序遍历</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">preorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        preorder(root, result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">preorder</span><span class="params">(TreeNode root, List&lt;Integer&gt; result)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        result.add(root.val);</span><br><span class="line">        preorder(root.left, result);</span><br><span class="line">        preorder(root.right, result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 中序遍历·递归·LC94_二叉树的中序遍历</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">inorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        inorder(root, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">inorder</span><span class="params">(TreeNode root, List&lt;Integer&gt; list)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        inorder(root.left, list);</span><br><span class="line">        list.add(root.val);             <span class="comment">// 注意这一句</span></span><br><span class="line">        inorder(root.right, list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 后序遍历·递归·LC145_二叉树的后序遍历</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">postorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        postorder(root, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">postorder</span><span class="params">(TreeNode root, List&lt;Integer&gt; list)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        postorder(root.left, list);</span><br><span class="line">        postorder(root.right, list);</span><br><span class="line">        list.add(root.val);             <span class="comment">// 注意这一句</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-迭代法遍历树">1.4 迭代法遍历树</h4>
+<p>1.前序遍历</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">preorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        Stack&lt;TreeNode&gt; st = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (root != <span class="literal">null</span>) st.push(root);</span><br><span class="line">        <span class="keyword">while</span> (!st.empty()) &#123;</span><br><span class="line">            <span class="type">TreeNode</span> <span class="variable">node</span> <span class="operator">=</span> st.peek();</span><br><span class="line">            <span class="keyword">if</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">                st.pop(); <span class="comment">// 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中</span></span><br><span class="line">                <span class="keyword">if</span> (node.right!=<span class="literal">null</span>) st.push(node.right);  <span class="comment">// 添加右节点（空节点不入栈）</span></span><br><span class="line">                <span class="keyword">if</span> (node.left!=<span class="literal">null</span>) st.push(node.left);    <span class="comment">// 添加左节点（空节点不入栈）</span></span><br><span class="line">                st.push(node);                          <span class="comment">// 添加中节点</span></span><br><span class="line">                st.push(<span class="literal">null</span>); <span class="comment">// 中节点访问过，但是还没有处理，加入空节点做为标记。</span></span><br><span class="line">                </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// 只有遇到空节点的时候，才将下一个节点放进结果集</span></span><br><span class="line">                st.pop();           <span class="comment">// 将空节点弹出</span></span><br><span class="line">                node = st.peek();    <span class="comment">// 重新取出栈中元素</span></span><br><span class="line">                st.pop();</span><br><span class="line">                result.add(node.val); <span class="comment">// 加入到结果集</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.中序遍历</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">inorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">    Stack&lt;TreeNode&gt; st = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root != <span class="literal">null</span>) st.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!st.empty()) &#123;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">node</span> <span class="operator">=</span> st.peek();</span><br><span class="line">        <span class="keyword">if</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">            st.pop(); <span class="comment">// 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中</span></span><br><span class="line">            <span class="keyword">if</span> (node.right!=<span class="literal">null</span>) st.push(node.right);  <span class="comment">// 添加右节点（空节点不入栈）</span></span><br><span class="line">            st.push(node);                          <span class="comment">// 添加中节点</span></span><br><span class="line">            st.push(<span class="literal">null</span>); <span class="comment">// 中节点访问过，但是还没有处理，加入空节点做为标记。</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (node.left!=<span class="literal">null</span>) st.push(node.left);    <span class="comment">// 添加左节点（空节点不入栈）</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 只有遇到空节点的时候，才将下一个节点放进结果集</span></span><br><span class="line">            st.pop();           <span class="comment">// 将空节点弹出</span></span><br><span class="line">            node = st.peek();    <span class="comment">// 重新取出栈中元素</span></span><br><span class="line">            st.pop();</span><br><span class="line">            result.add(node.val); <span class="comment">// 加入到结果集</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.后序遍历</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">postorderTraversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        Stack&lt;TreeNode&gt; st = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (root != <span class="literal">null</span>) st.push(root);</span><br><span class="line">        <span class="keyword">while</span> (!st.empty()) &#123;</span><br><span class="line">            <span class="type">TreeNode</span> <span class="variable">node</span> <span class="operator">=</span> st.peek();</span><br><span class="line">            <span class="keyword">if</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">                st.pop(); <span class="comment">// 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中</span></span><br><span class="line">                st.push(node);                          <span class="comment">// 添加中节点</span></span><br><span class="line">                st.push(<span class="literal">null</span>); <span class="comment">// 中节点访问过，但是还没有处理，加入空节点做为标记。</span></span><br><span class="line">                <span class="keyword">if</span> (node.right!=<span class="literal">null</span>) st.push(node.right);  <span class="comment">// 添加右节点（空节点不入栈）</span></span><br><span class="line">                <span class="keyword">if</span> (node.left!=<span class="literal">null</span>) st.push(node.left);    <span class="comment">// 添加左节点（空节点不入栈）         </span></span><br><span class="line">                               </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// 只有遇到空节点的时候，才将下一个节点放进结果集</span></span><br><span class="line">                st.pop();           <span class="comment">// 将空节点弹出</span></span><br><span class="line">                node = st.peek();    <span class="comment">// 重新取出栈中元素</span></span><br><span class="line">                st.pop();</span><br><span class="line">                result.add(node.val); <span class="comment">// 加入到结果集</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -403,7 +717,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-16 00:05:59" itemprop="dateModified" datetime="2023-10-16T00:05:59+08:00">2023-10-16</time>
+      <time title="修改时间：2023-11-20 15:45:53" itemprop="dateModified" datetime="2023-11-20T15:45:53+08:00">2023-11-20</time>
     </span>
 
   
@@ -413,14 +727,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>92</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -431,15 +745,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="一-算法分析"><a href="#一-算法分析" class="headerlink" title="一. 算法分析"></a>一. 算法分析</h2><p>是关于计算机程序性和资源利用的分析，特别注重性能。</p>
-<h3 id="Class-1-课程简介及算法分析"><a href="#Class-1-课程简介及算法分析" class="headerlink" title="Class 1 课程简介及算法分析"></a>Class 1 课程简介及算法分析</h3><h4 id="1-排序问题"><a href="#1-排序问题" class="headerlink" title="1. 排序问题"></a>1. 排序问题</h4><p>Input: Sequence</p>
-<script type="math/tex; mode=display"><a_1,a_2,...a_n></script><p>Output: Permutation Sequence</p>
-<script type="math/tex; mode=display"><a_1',a_2',...a_n'></script><p>排列是对一组数字按照一定规则重新排序，例如：</p>
-<script type="math/tex; mode=display">a_1'<a_2'<...<a_n'</script><h5 id="1-1-插入排序（Insert-Sort）"><a href="#1-1-插入排序（Insert-Sort）" class="headerlink" title="1.1 插入排序（Insert Sort）"></a>1.1 插入排序（Insert Sort）</h5><p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/20200707235339515.png" alt="20200707235339515"></p>
+          <h2 id="一-算法分析">一. 算法分析</h2>
+<p>是关于计算机程序性和资源利用的分析，特别注重性能。</p>
+<h3 id="Class-1-课程简介及算法分析">Class 1 课程简介及算法分析</h3>
+<h4 id="1-排序问题">1. 排序问题</h4>
+<p>Input: Sequence<br>
+$$&lt;a_1,a_2,…a_n&gt;$$<br>
+Output: Permutation Sequence<br>
+$$&lt;a_1’,a_2’,…a_n’&gt;$$</p>
+<p>排列是对一组数字按照一定规则重新排序，例如：<br>
+$$a_1’&lt;a_2’&lt;…&lt;a_n’$$</p>
+<h5 id="1-1-插入排序（Insert-Sort）">1.1 插入排序（Insert Sort）</h5>
+<p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/20200707235339515.png" alt="20200707235339515"></p>
 <p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/20190410105330442.gif" alt="20190410105330442"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//伪代码</span></span><br><span class="line">Insert <span class="title function_">Sort</span><span class="params">(A,n)</span></span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">1</span> to n</span><br><span class="line">        <span class="keyword">do</span> key = A[j]</span><br><span class="line">            i = j<span class="number">-1</span></span><br><span class="line">            <span class="keyword">while</span> i&gt;<span class="number">0</span> &amp;&amp; A[i]&gt;key</span><br><span class="line">                <span class="keyword">do</span> A[i+<span class="number">1</span>]=A[i]</span><br><span class="line">                    i=i<span class="number">-1</span></span><br><span class="line">            A[i+<span class="number">1</span>]=key</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//伪代码</span><br><span class="line">Insert Sort(A,n)</span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">1</span> to n</span><br><span class="line">        do key = A[j]</span><br><span class="line">            i = j-<span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> i&gt;<span class="number">0</span> &amp;&amp; A[i]&gt;key</span><br><span class="line">                do A[i+<span class="number">1</span>]=A[i]</span><br><span class="line">                    i=i-<span class="number">1</span></span><br><span class="line">            A[i+<span class="number">1</span>]=key</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//示例代码</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">insert_sort</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(s)): <span class="comment">#开始时片段[0:1]已排序</span></span><br><span class="line">        x=s[i]</span><br><span class="line">        j=i</span><br><span class="line">        <span class="keyword">while</span> j&gt;<span class="number">0</span> <span class="keyword">and</span> s[j-<span class="number">1</span>]&gt;x:</span><br><span class="line">            s[j]=s[j-<span class="number">1</span>] <span class="comment">#反序逐个后移元素，确定插入位置</span></span><br><span class="line">            j-=<span class="number">1</span></span><br><span class="line">        s[j]=x</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">s=[<span class="number">2</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">insert_sort(s)</span><br></pre></td></tr></table></figure>
-<h6 id="Running-Time"><a href="#Running-Time" class="headerlink" title="Running Time"></a>Running Time</h6><p>1）依赖于输入（例如一种极端的情况就是输入已经排序完成的序列）</p>
+<h6 id="Running-Time">Running Time</h6>
+<p>1）依赖于输入（例如一种极端的情况就是输入已经排序完成的序列）</p>
 <p>2）依赖于输入大小</p>
 <p>​        我们将依赖输入的规模将其参数化；</p>
 <p>3）运行时间上限</p>
@@ -447,55 +769,138 @@
 <p><strong>1）Worst Case：</strong></p>
 <p>​         T(n)定义为输入规模为n时的最长运行时间；我们关注所有输入情况时的运行时间的最差情况。</p>
 <ul>
-<li><p>相对速度（同一机器）</p>
+<li>
+<p>相对速度（同一机器）</p>
 </li>
-<li><p>绝对速度（不同机器）</p>
+<li>
+<p>绝对速度（不同机器）</p>
 </li>
 </ul>
 <p><strong>2） Average Case:</strong></p>
 <p>​        T(n)这时定义为输入规模n下所有可能输入的期望时间；</p>
 <p>​       接下来我们具体分析插入排序的时间性能，而渐进符号的概念会在下面做详细的介绍：</p>
 <ul>
-<li>Worst Case:<script type="math/tex; mode=display">
-T(n)=\sum_{j=2}^{n} \theta (j)=\theta (n^2)</script></li>
+<li>Worst Case:<br>
+$$<br>
+T(n)=\sum_{j=2}^{n} \theta (j)=\theta (n^2)<br>
+$$</li>
 </ul>
-<h5 id="1-2-归并排序（Merge-Sort）"><a href="#1-2-归并排序（Merge-Sort）" class="headerlink" title="1.2 归并排序（Merge Sort）"></a>1.2 归并排序（Merge Sort）</h5><p>​        归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。归并排序思路简单，速度仅次于快速排序，为稳定排序算法，一般用于对总体无序，但是各子项相对有序的数列。</p>
+<h5 id="1-2-归并排序（Merge-Sort）">1.2 归并排序（Merge Sort）</h5>
+<p>​        归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。归并排序思路简单，速度仅次于快速排序，为稳定排序算法，一般用于对总体无序，但是各子项相对有序的数列。</p>
 <p><img src="https://pic4.zhimg.com/v2-2958d4f3d9dd9156f1b5dca6788fe8a7_r.jpg" alt="img"></p>
 <p><img src="https://pic4.zhimg.com/v2-a29c0dd0186d1f8cef3c5ebdedf3e5a3_b.webp" alt="动图"></p>
 <p>在每一步中，只关心两个元素。</p>
-<h6 id="Running-Time-1"><a href="#Running-Time-1" class="headerlink" title="Running Time"></a>Running Time</h6><p>递归每一层的比较时间是线性的</p>
-<script type="math/tex; mode=display">
-Time=\theta(n)</script><p>线性时间</p>
-<script type="math/tex; mode=display">
-T(n)=\left\{\begin{matrix}
-  \theta (1),& n=1\\
-  2T(\frac{n}{2}  )+\theta(n),&n>1
-\end{matrix}\right.</script><p>通常我们省略常数情况，利用递归树可以得出</p>
-<script type="math/tex; mode=display">
-T(n)=\theta (nlgn)</script><p><strong>我们可以得出，在渐进的情况下，归并排序的速度是优于插入排序算法的。</strong></p>
-<h4 id="2-简单理解渐进符号（Asymptatic-notation）"><a href="#2-简单理解渐进符号（Asymptatic-notation）" class="headerlink" title="2. 简单理解渐进符号（Asymptatic notation）"></a>2. 简单理解渐进符号（Asymptatic notation）</h4><script type="math/tex; mode=display">
-\theta</script><p>写个公式，弃去低阶项，忽略前面的常数因子。</p>
-<p>例如：</p>
-<script type="math/tex; mode=display">
-3n^3+90n^2-5n+3298=\theta(n^3)</script><p>渐进符号厉害之处在于使用一个统一的度量标准来平衡相对速度和绝对速度两方面的考量。</p>
+<h6 id="Running-Time-2">Running Time</h6>
+<p>递归每一层的比较时间是线性的<br>
+$$<br>
+Time=\theta(n)<br>
+$$<br>
+线性时间<br>
+$$<br>
+T(n)=\left{\begin{matrix}<br>
+\theta (1),&amp; n=1\<br>
+2T(\frac{n}{2}  )+\theta(n),&amp;n&gt;1<br>
+\end{matrix}\right.<br>
+$$</p>
+<p>通常我们省略常数情况，利用递归树可以得出<br>
+$$<br>
+T(n)=\theta (nlgn)<br>
+$$<br>
+<strong>我们可以得出，在渐进的情况下，归并排序的速度是优于插入排序算法的。</strong></p>
+<h4 id="2-简单理解渐进符号（Asymptatic-notation）">2. 简单理解渐进符号（Asymptatic notation）</h4>
+<p>$$<br>
+\theta<br>
+$$</p>
+<p>写个公式，弃去低阶项，忽略前面的常数因子。</p>
+<p>例如：<br>
+$$<br>
+3n^3+90n^2-5n+3298=\theta(n^3)<br>
+$$<br>
+渐进符号厉害之处在于使用一个统一的度量标准来平衡相对速度和绝对速度两方面的考量。</p>
 <p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/image-20231014164552980.png" alt="image-20231014164552980"></p>
-<h3 id="Class-2-渐进符号，递归及其解法"><a href="#Class-2-渐进符号，递归及其解法" class="headerlink" title="Class 2 渐进符号，递归及其解法"></a>Class 2 渐进符号，递归及其解法</h3><h4 id="1-渐进符号"><a href="#1-渐进符号" class="headerlink" title="1. 渐进符号"></a>1. 渐进符号</h4><h4 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h4><h4 id="2-求解递归式"><a href="#2-求解递归式" class="headerlink" title="2. 求解递归式"></a>2. 求解递归式</h4><h5 id="2-1-方法一：代换法"><a href="#2-1-方法一：代换法" class="headerlink" title="2.1 方法一：代换法"></a>2.1 <strong>方法一：代换法</strong></h5><p>1.猜测答案</p>
+<h3 id="Class-2-渐进符号，递归及其解法">Class 2 渐进符号，递归及其解法</h3>
+<h4 id="1-渐进符号">1. 渐进符号</h4>
+<h4 id="1-1-定义">1.1 定义</h4>
+<h4 id="2-求解递归式">2. 求解递归式</h4>
+<h5 id="2-1-方法一：代换法">2.1 <strong>方法一：代换法</strong></h5>
+<p>1.猜测答案</p>
 <p>2.按照归纳法求解常数</p>
 <p>3.验证答案</p>
-<p>例如：</p>
-<script type="math/tex; mode=display">
-T(n)=4T(\frac{n}{2} )+n</script><script type="math/tex; mode=display">
-Guess: T=O(n^3)</script><script type="math/tex; mode=display">
-Assume:T(k)\le ck^3,k<n</script><script type="math/tex; mode=display">
-T(n)=4T(\frac{n}{2} )+n
-\le 4c(\frac{n}{2} )^3+n=\frac{1}{2} cn^3+n\le cn^3</script><script type="math/tex; mode=display">
-Try~to~prove~~T(n)=O(n^2)~</script><script type="math/tex; mode=display">
-Assume:T(k)\le ck^2,k<n</script><script type="math/tex; mode=display">
-T(n)=4T(\frac{n}{2} )+n
-\le 4c(\frac{n}{2} )^2+n=cn^2+n\ge cn^2</script><script type="math/tex; mode=display">
-Assume:T(k)\le c_1k^2-c_2k,k<n</script><script type="math/tex; mode=display">
-T(n)=4T(\frac{n}{2} )+n
-\le 4(c_1(\frac{n}{2} )^2-c_2(\frac{n}{2}))+n\\=c_1n^2+(1-2c_2)n=c_1n^2-c_2n-(-1+c_2)n\\\le c_1n^2-c_2k~~~if~c_2\ge1</script><h5 id="2-2-方法二：递归树法"><a href="#2-2-方法二：递归树法" class="headerlink" title="2.2 方法二：递归树法"></a>2.2 方法二：递归树法</h5><h5 id="2-3-方法三：主方法"><a href="#2-3-方法三：主方法" class="headerlink" title="2.3 方法三：主方法"></a>2.3 方法三：主方法</h5>
+<p>例如：<br>
+$$<br>
+T(n)=4T(\frac{n}{2} )+n<br>
+$$</p>
+<p>$$<br>
+Guess: T=O(n^3)<br>
+$$</p>
+<p>$$<br>
+Assume:T(k)\le ck^3,k&lt;n<br>
+$$</p>
+<p>$$<br>
+T(n)=4T(\frac{n}{2} )+n<br>
+\le 4c(\frac{n}{2} )^3+n=\frac{1}{2} cn^3+n\le cn^3<br>
+$$</p>
+<p>$$<br>
+Try~to~prove~~T(n)=O(n^2)~<br>
+$$</p>
+<p>$$<br>
+Assume:T(k)\le ck^2,k&lt;n<br>
+$$</p>
+<p>$$<br>
+T(n)=4T(\frac{n}{2} )+n<br>
+\le 4c(\frac{n}{2} )^2+n=cn^2+n\ge cn^2<br>
+$$</p>
+<p>$$<br>
+Assume:T(k)\le c_1k^2-c_2k,k&lt;n<br>
+$$</p>
+<p>$$<br>
+T(n)=4T(\frac{n}{2} )+n<br>
+\le 4(c_1(\frac{n}{2} )^2-c_2(\frac{n}{2}))+n\=c_1n^2+(1-2c_2)n=c_1n^2-c_2n-(-1+c_2)n\\le c_1n^2-c_2k~~~if~c_2\ge1<br>
+$$</p>
+<h5 id="2-2-方法二：递归树法">2.2 方法二：递归树法</h5>
+<h5 id="2-3-方法三：主方法">2.3 方法三：主方法</h5>
+<h3 id="Class-3-分治法">Class 3 分治法</h3>
+<p>第一个算法设计方法，分治（英语：Divide and Conquer），字面上的解释是「分而治之」，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。</p>
+<h4 id="1-Divide（分）">1. Divide（分）</h4>
+<p>将一个问题分成若干子问题</p>
+<h4 id="2-Conquer（治）">2. Conquer（治）</h4>
+<h4 id="3-Combine-（合）">3.  Combine （合）</h4>
+<h5 id="3-1-例子">3.1 例子</h5>
+<h5 id="1：归并排序">1：归并排序</h5>
+<p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/v2-2958d4f3d9dd9156f1b5dca6788fe8a7_r.jpg" alt="img"></p>
+<p>归并排序的时间复杂度：<br>
+$$<br>
+T(n)=2T(\frac{n}{2} )+\theta (n)<br>
+$$</p>
+<p>$$<br>
+T(n)=\theta (n\log_{2}{n}  )<br>
+$$</p>
+<p><strong>例子2：二分查找(Binary Search)</strong><br>
+$$<br>
+T(n)=T(\frac{n}{2} )+\theta (1)<br>
+$$<br>
+子问题只有一个，和常数量的比较时间<br>
+$$<br>
+T(n)=O (\log_{2}{n}  )<br>
+$$<br>
+<strong>例子3：乘方问题</strong></p>
+<p>Given  number x  and integer n&gt;=0, Compute x的n次方<br>
+$$<br>
+x^{n} =\binom{x^\frac{n}{2}\cdot x^\frac{n}{2} }{x^\frac{n-1}{2}\cdot x^\frac{n-1}{2}\cdot x }<br>
+$$<br>
+上述问题的时间复杂度为：<br>
+$$<br>
+T(n)=T(\frac{n}{2} )+\theta (1)<br>
+$$</p>
+<p>$$<br>
+T(n)=O(\log_{2}{n}  )<br>
+$$</p>
+<p>这是一个短小精悍的算法，哈哈哈</p>
+<p>例子4：斐波那契数列</p>
+<p><img src="/2023/10/14/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/image-20231115204502544.png" alt="image-20231115204502544"></p>
+<p>递归求解斐波那契数列具有指数级的时间复杂度</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56444434">三种时间复杂度算法求解斐波那契数列 - 知乎 (zhihu.com)</a></p>
+
       
     </div>
 
@@ -585,24 +990,33 @@ T(n)=4T(\frac{n}{2} )+n
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Go语言学习第一课（2023-10-14）"><a href="#Go语言学习第一课（2023-10-14）" class="headerlink" title="Go语言学习第一课（2023.10.14）"></a>Go语言学习第一课（2023.10.14）</h2><h3 id="1-Golang的学习方向"><a href="#1-Golang的学习方向" class="headerlink" title="1.Golang的学习方向"></a>1.Golang的学习方向</h3><ol>
-<li><p>1 区块链研发工程师</p>
+          <h2 id="Go语言学习第一课（2023-10-14）">Go语言学习第一课（2023.10.14）</h2>
+<h3 id="1-Golang的学习方向">1.Golang的学习方向</h3>
+<ol>
+<li>
+<p>1 区块链研发工程师</p>
 </li>
-<li><p>2 Go服务器端/游戏软件工程师</p>
+<li>
+<p>2 Go服务器端/游戏软件工程师</p>
 </li>
-<li><p>3 Golang分布式/云计算软件工程师</p>
+<li>
+<p>3 Golang分布式/云计算软件工程师</p>
 </li>
 </ol>
-<h3 id="2-Golang的应用领域"><a href="#2-Golang的应用领域" class="headerlink" title="2.Golang的应用领域"></a>2.Golang的应用领域</h3><p>区块链应用：分布式账本技术，特点是去中心化；</p>
+<h3 id="2-Golang的应用领域">2.Golang的应用领域</h3>
+<p>区块链应用：分布式账本技术，特点是去中心化；</p>
 <p>后端服务器应用：美团后台流量支撑程序；</p>
 <p>云计算和云服务；</p>
-<h3 id="3-如何学习Go语言"><a href="#3-如何学习Go语言" class="headerlink" title="3.如何学习Go语言"></a>3.如何学习Go语言</h3><p>高效学习、在实践中学习，写代码不能停</p>
-<h3 id="4-Go语言特点"><a href="#4-Go语言特点" class="headerlink" title="4.Go语言特点"></a>4.Go语言特点</h3><p>简介：Go语言具有C语言和高级语言的两方面优点，既能够静态编译语言的安全和性能，又达到了动态语言开发维护的高效率。Go=C+Python。</p>
+<h3 id="3-如何学习Go语言">3.如何学习Go语言</h3>
+<p>高效学习、在实践中学习，写代码不能停</p>
+<h3 id="4-Go语言特点">4.Go语言特点</h3>
+<p>简介：Go语言具有C语言和高级语言的两方面优点，既能够静态编译语言的安全和性能，又达到了动态语言开发维护的高效率。Go=C+Python。</p>
 <p>1）从C语言中继承了很多理念</p>
 <p>2）Go语言的每个文件都要归属于一个包</p>
 <p>3）垃圾回收机制，内存自动回收，不需要开发人员管理</p>
 <p>4）天然并发</p>
-<h3 id="5-Go语言的安装教程"><a href="#5-Go语言的安装教程" class="headerlink" title="5.Go语言的安装教程"></a>5.Go语言的安装教程</h3><p><a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">All releases - The Go Programming Language (google.cn)</a></p>
+<h3 id="5-Go语言的安装教程">5.Go语言的安装教程</h3>
+<p><a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">All releases - The Go Programming Language (google.cn)</a></p>
 <p>1）首先打开上面的Go语言官网，根据自己的操作系统选择合适的安装包。</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015112427530.png" alt="image-20231015112427530"></p>
 <p>2）直接安装，新版本无需配置环境变量</p>
@@ -612,52 +1026,71 @@ T(n)=4T(\frac{n}{2} )+n
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015131240915.png" alt="image-20231015131240915"></p>
 <p>注意，如果package下面有红色波浪线，go.mod未初始化，可以在终端输入如下命令</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015131335711.png" alt="image-20231015131335711"></p>
-<h2 id="Go语言学习第二课（2023-10-15）"><a href="#Go语言学习第二课（2023-10-15）" class="headerlink" title="Go语言学习第二课（2023.10.15）"></a>Go语言学习第二课（2023.10.15）</h2><h3 id="1-Go语言快速开发入门"><a href="#1-Go语言快速开发入门" class="headerlink" title="1.Go语言快速开发入门"></a>1.Go语言快速开发入门</h3><h4 id="1-1-需求"><a href="#1-1-需求" class="headerlink" title="1.1 需求"></a>1.1 需求</h4><p>要求开发一个hello.go程序，可以输出hello world</p>
-<h4 id="1-2-开发的步骤"><a href="#1-2-开发的步骤" class="headerlink" title="1.2 开发的步骤"></a>1.2 开发的步骤</h4><ul>
-<li><p>开发项目时，Go比较好的一种建目录结构的方式</p>
+<h2 id="Go语言学习第二课（2023-10-15）">Go语言学习第二课（2023.10.15）</h2>
+<h3 id="1-Go语言快速开发入门">1.Go语言快速开发入门</h3>
+<h4 id="1-1-需求">1.1 需求</h4>
+<p>要求开发一个hello.go程序，可以输出hello world</p>
+<h4 id="1-2-开发的步骤">1.2 开发的步骤</h4>
+<ul>
+<li>
+<p>开发项目时，Go比较好的一种建目录结构的方式</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015132514784.png" alt="image-20231015132514784"></p>
 </li>
 </ul>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015132939529.png" alt="image-20231015132939529"></p>
 <ul>
-<li><p>对上图代码的说明:</p>
+<li>
+<p>对上图代码的说明:</p>
 <ul>
-<li><p>Go程序的后缀是.go</p>
+<li>
+<p>Go程序的后缀是.go</p>
 </li>
-<li><p>package main表示该文件所在包是main，在go中每个文件都必须归属于一个包</p>
+<li>
+<p>package main表示该文件所在包是main，在go中每个文件都必须归属于一个包</p>
 </li>
-<li><p>import “fmt”引入一个包名为fmt的包，可以使用该包内的函数</p>
+<li>
+<p>import &quot;fmt&quot;引入一个包名为fmt的包，可以使用该包内的函数</p>
 </li>
-<li><p>func main(){</p>
+<li>
+<p>func main(){</p>
 </li>
 </ul>
 <p>​        }</p>
 <p>​        func是关键字，类似主函数。是我们程序的入口。</p>
 <p>​        fmt.Println()表示调用函数</p>
 </li>
-</ul>
-<ul>
-<li>通过go build命令对该go文件进行编译，生成.exe文件。可以指定文件名。</li>
+<li>
+<p>通过go build命令对该go文件进行编译，生成.exe文件。可以指定文件名。</p>
+</li>
 </ul>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015141351267.png" alt="image-20231015141351267"></p>
-<h3 id="2-Go语言执行流程分析"><a href="#2-Go语言执行流程分析" class="headerlink" title="2.Go语言执行流程分析"></a>2.Go语言执行流程分析</h3><ul>
+<h3 id="2-Go语言执行流程分析">2.Go语言执行流程分析</h3>
+<ul>
 <li>如果是对源码编译后在执行，执行流程如下图：</li>
 </ul>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015141804451.png" alt="image-20231015141804451"></p>
 <ul>
-<li><p>如果是对源码直接执行go run指令，执行流程如下：</p>
+<li>
+<p>如果是对源码直接执行go run指令，执行流程如下：</p>
 <p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015141930852.png" alt="image-20231015141930852"></p>
 </li>
-<li><p>两种执行方式的区别：</p>
+<li>
+<p>两种执行方式的区别：</p>
 <p>1）如果生成exe文件，可以拷贝到没有go开发环境的机器上运行；</p>
 </li>
 </ul>
 <p>​       2）如果我们直接go run go源代码，那么如果在另一台机器上运行，也需要go的开发环境；</p>
 <p>​       3）在编译时将程序依赖的库文件包含在可执行文件中，可执行文件 大了很多；</p>
-<h3 id="正式开始学习之旅（2023-10-15）"><a href="#正式开始学习之旅（2023-10-15）" class="headerlink" title="正式开始学习之旅（2023.10.15）"></a>正式开始学习之旅（2023.10.15）</h3><h4 id="2-1-变量"><a href="#2-1-变量" class="headerlink" title="2.1. 变量"></a>2.1. 变量</h4><h5 id="2-1-1-概念"><a href="#2-1-1-概念" class="headerlink" title="2.1.1 概念"></a>2.1.1 概念</h5><p>变量相当于内存中的一个数据存储空间，通过变量名可以访问到变量（值）</p>
-<h5 id="2-1-2-使用步骤"><a href="#2-1-2-使用步骤" class="headerlink" title="2.1.2 使用步骤"></a>2.1.2 使用步骤</h5><p>声明 赋值 使用</p>
-<h5 id="2-1-3-案例"><a href="#2-1-3-案例" class="headerlink" title="2.1.3  案例"></a>2.1.3  案例</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	i = <span class="number">10</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;i=&quot;</span>,i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="2-1-4-使用注意事项"><a href="#2-1-4-使用注意事项" class="headerlink" title="2.1.4 使用注意事项"></a>2.1.4 使用注意事项</h5><p>1）变量表示内存中的一个存储区域</p>
+<h3 id="正式开始学习之旅（2023-10-15）">正式开始学习之旅（2023.10.15）</h3>
+<h4 id="2-1-变量">2.1. 变量</h4>
+<h5 id="2-1-1-概念">2.1.1 概念</h5>
+<p>变量相当于内存中的一个数据存储空间，通过变量名可以访问到变量（值）</p>
+<h5 id="2-1-2-使用步骤">2.1.2 使用步骤</h5>
+<p>声明 赋值 使用</p>
+<h5 id="2-1-3-案例">2.1.3  案例</h5>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	i = <span class="number">10</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;i=&quot;</span>,i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-1-4-使用注意事项">2.1.4 使用注意事项</h5>
+<p>1）变量表示内存中的一个存储区域</p>
 <p>2）该区域有自己的名称和类型</p>
 <p>3）Golang使用变量的三种方式</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//第一种：指定变量类型，声明后若不赋值，使用默认值</span></span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;i =&quot;</span>,i)</span><br><span class="line">	<span class="comment">//第二种：根据所给值判定变量类型</span></span><br><span class="line">	<span class="keyword">var</span> num = <span class="number">10.11</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;num =&quot;</span>,num)</span><br><span class="line">	<span class="comment">//第三种：省略var，注意:=左侧的变量不能是已经声明过的，否则错误</span></span><br><span class="line">	<span class="comment">//等价于 var name string    name=&quot;Tom&quot;</span></span><br><span class="line">	name := <span class="string">&quot;tom&quot;</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;name =&quot;</span>,name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -666,12 +1099,16 @@ T(n)=4T(\frac{n}{2} )+n
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//golang如何一次性声明多变量</span></span><br><span class="line">	<span class="comment">//var n1,n2,n3 int </span></span><br><span class="line">	<span class="comment">//fmt.Println(&quot;n1=&quot;,n1,&quot;n2=&quot;,n2,&quot;n3=&quot;,n3)</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//一次性声明多个不同类型的变量</span></span><br><span class="line">	<span class="comment">// var n1, name, n3 = 100, &quot;tom&quot;, 888</span></span><br><span class="line">	<span class="comment">// fmt.Println(&quot;n1=&quot;, n1, &quot;name=&quot;, name, &quot;n3=&quot;, n3)</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//使用类型推导</span></span><br><span class="line">	n1, name, n3 := <span class="number">100</span>, <span class="string">&quot;tom&quot;</span>, <span class="number">888</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;n1=&quot;</span>, n1, <span class="string">&quot;name=&quot;</span>, name, <span class="string">&quot;n3=&quot;</span>, n3)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>5）该区域的数据值可以在同一类型的范围内变化</p>
 <p>6）变量在同一作用域内不能重名</p>
-<h5 id="2-1-5-变量的声明，初始化和赋值"><a href="#2-1-5-变量的声明，初始化和赋值" class="headerlink" title="2.1.5 变量的声明，初始化和赋值"></a>2.1.5 变量的声明，初始化和赋值</h5><p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172214055.png" alt="image-20231015172214055"></p>
-<h5 id="2-1-6-程序中-号的使用"><a href="#2-1-6-程序中-号的使用" class="headerlink" title="2.1.6 程序中+号的使用"></a>2.1.6 程序中+号的使用</h5><p>1）+两边都是数值型，做加法运算</p>
+<h5 id="2-1-5-变量的声明，初始化和赋值">2.1.5 变量的声明，初始化和赋值</h5>
+<p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172214055.png" alt="image-20231015172214055"></p>
+<h5 id="2-1-6-程序中-号的使用">2.1.6 程序中+号的使用</h5>
+<p>1）+两边都是数值型，做加法运算</p>
 <p>2）+两边都是字符串，做字符串拼接</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i = <span class="number">1</span></span><br><span class="line">	<span class="keyword">var</span> j = <span class="number">2</span></span><br><span class="line">	<span class="keyword">var</span> r = i + j</span><br><span class="line">	fmt.Println(<span class="string">&quot;r=&quot;</span>, r) <span class="comment">//r=3</span></span><br><span class="line">	<span class="keyword">var</span> str1 = <span class="string">&quot;hello&quot;</span></span><br><span class="line">	<span class="keyword">var</span> str2 = <span class="string">&quot;world&quot;</span></span><br><span class="line">	<span class="keyword">var</span> res = str1 + str2</span><br><span class="line">	fmt.Println(<span class="string">&quot;res=&quot;</span>, res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="2-1-7-变量的数据类型"><a href="#2-1-7-变量的数据类型" class="headerlink" title="2.1.7 变量的数据类型"></a>2.1.7 变量的数据类型</h5><p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172944441.png" alt="image-20231015172944441"></p>
-<h5 id="2-1-8-整数类型"><a href="#2-1-8-整数类型" class="headerlink" title="2.1.8 整数类型"></a>2.1.8 整数类型</h5><h6 id="2-1-8-1-基本介绍"><a href="#2-1-8-1-基本介绍" class="headerlink" title="2.1.8.1 基本介绍"></a>2.1.8.1 基本介绍</h6><div class="table-container">
+<h5 id="2-1-7-变量的数据类型">2.1.7 变量的数据类型</h5>
+<p><img src="/2023/10/14/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/image-20231015172944441.png" alt="image-20231015172944441"></p>
+<h5 id="2-1-8-整数类型">2.1.8 整数类型</h5>
+<h6 id="2-1-8-1-基本介绍">2.1.8.1 基本介绍</h6>
 <table>
 <thead>
 <tr>
@@ -703,8 +1140,8 @@ T(n)=4T(\frac{n}{2} )+n
 </tr>
 </tbody>
 </table>
-</div>
-<h6 id="2-1-8-2-整数的使用细节"><a href="#2-1-8-2-整数的使用细节" class="headerlink" title="2.1.8.2 整数的使用细节"></a>2.1.8.2 整数的使用细节</h6><p>1）有符号和无符号的区分；</p>
+<h6 id="2-1-8-2-整数的使用细节">2.1.8.2 整数的使用细节</h6>
+<p>1）有符号和无符号的区分；</p>
 <p>2）整数默认声明为int；</p>
 <p>3）Go语言在使用时遵守保小不保大的原则，尽量选择占用空间小的类型；</p>
 
@@ -791,13 +1228,18 @@ T(n)=4T(\frac{n}{2} )+n
     
     <div class="post-body" itemprop="articleBody">
           <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
@@ -837,13 +1279,13 @@ T(n)=4T(\frac{n}{2} )+n
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">5k</span>
+    <span title="站点总字数">16k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">10 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
